@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T4n OS - Sistem Operasi Berbasis Void Linux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #a8e6cf;
+            --primary-blue: #7fcdbb;
+            --dark-bg: #1a1a2e;
+            --dark-card: #16213e;
+            --dark-text: #e8e8e8;
+            --light-bg: #f5f5f5;
+            --light-card: #ffffff;
+            --light-text: #333333;
+            --accent: #5eb3a6;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        body.light-mode {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navbar */
+        header {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark-bg);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-bg);
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--dark-bg);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark-bg);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(168, 230, 207, 0.2), rgba(127, 205, 187, 0.2));
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            color: var(--dark-bg);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary-green);
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: all 0.3s;
+        }
+
+        body.light-mode .card {
+            background-color: var(--light-card);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .card-link i {
+            margin-left: 5px;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--dark-card);
+            transition: all 0.3s;
+        }
+
+        body.light-mode .feature {
+            background-color: var(--light-card);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature i {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-card);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        body.light-mode footer {
+            background-color: var(--light-card);
+            border-top: 1px solid #eee;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: var(--dark-text);
+            text-decoration: none;
+        }
+
+        body.light-mode .footer-section a {
+            color: var(--light-text);
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-green);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: left 0.5s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-desktop"></i>
+                T4n OS
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#components">Komponen</a></li>
+                <li><a href="#info">Info</a></li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>T4n OS</h1>
+            <p>Sistem Operasi berbasis Void Linux dengan repositori pengguna sendiri (VUR) dan tools kustomisasi yang powerful</p>
+            <a href="#about" class="btn">Pelajari Lebih Lanjut</a>
+            <a href="https://github.com/gh0st4n/T4n-OS" class="btn" target="_blank">GitHub</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="about" class="section">
+            <h2 class="section-title">Tentang T4n OS</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>T4n OS</h3>
+                    <p>T4n OS adalah distribusi Linux yang berbasis Void Linux dengan fokus pada kustomisasi dan performa. Sistem ini dirancang untuk pengguna yang menginginkan kontrol penuh atas sistem operasi mereka.</p>
+                    <a href="https://github.com/gh0st4n/T4n-OS" class="card-link" target="_blank">
+                        Kunjungi GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card">
+                    <h3>VUR (Void User Repo)</h3>
+                    <p>VUR adalah repositori pengguna untuk T4n OS yang mirip dengan AUR di Arch Linux. Memungkinkan pengguna untuk berbagi dan menginstal perangkat lunak tambahan yang tidak tersedia di repositori resmi Void Linux.</p>
+                    <a href="https://github.com/gh0st4n/VUR" class="card-link" target="_blank">
+                        Kunjungi GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card">
+                    <h3>VUR-Helper</h3>
+                    <p>Tools Python Wrapper yang mengambil source code, mengompilasi, dan menggunakan tools XDEB dan xbps-src untuk mempermudah proses pembuatan paket untuk VUR.</p>
+                    <a href="https://github.com/gh0st4n/T4n-Manpy" class="card-link" target="_blank">
+                        Kunjungi GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <h2 class="section-title">Fitur T4n OS</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-terminal"></i>
+                    <h3>CLI/Server</h3>
+                    <p>Optimasi untuk penggunaan CLI dan server dengan performa tinggi dan jejak memori minimal.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-desktop"></i>
+                    <h3>GUI X11 - XFCE4</h3>
+                    <p>Dukungan penuh untuk XFCE4 sebagai lingkungan desktop X11 yang ringan dan responsif.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-window-restore"></i>
+                    <h3>GUI Wayland - COSMIC DE</h3>
+                    <p>Support untuk COSMIC Desktop Environment pada protokol Wayland yang modern.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-th"></i>
+                    <h3>WM X11 - BSPWM</h3>
+                    <p>Konfigurasi BSPWM yang optimal untuk produktivitas dengan manajemen jendela tiling.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>WM Wayland - RiverWM</h3>
+                    <p>Dukungan untuk RiverWM atau WalaweWM (Wayland Compositor) sebagai alternatif modern.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Kustomisasi Init System</h3>
+                    <p>Sistem init runit yang dikustomisasi untuk booting cepat dan manajemen layanan yang efisien.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="components" class="section">
+            <h2 class="section-title">Komponen Inti</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>XDEB</h3>
+                    <p>Tools untuk mengkonversi paket dari berbagai distribusi ke format XBPS yang digunakan oleh Void Linux dan T4n OS.</p>
+                    <a href="https://github.com/xdeb-org/xdeb" class="card-link" target="_blank">
+                        Pelajari lebih lanjut <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card">
+                    <h3>xbps-src</h3>
+                    <p>Tools build dari Void Linux yang digunakan untuk membuat paket dari source code untuk repositori Void Linux dan VUR.</p>
+                    <a href="https://github.com/void-linux/void-packages" class="card-link" target="_blank">
+                        Pelajari lebih lanjut <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card">
+                    <h3>runit</h3>
+                    <p>Sistem init yang ringan dan cepat yang digunakan sebagai pengganti systemd di Void Linux dan T4n OS.</p>
+                    <a href="#" class="card-link">
+                        Pelajari lebih lanjut <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="info" class="section">
+            <h2 class="section-title">Informasi & Sumber Daya</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Dokumentasi</h3>
+                    <p>Dokumentasi lengkap tentang instalasi, konfigurasi, dan penggunaan T4n OS beserta komponen-komponennya.</p>
+                    <a href="#" class="card-link">
+                        Baca Dokumentasi <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card">
+                    <h3>Komunitas</h3>
+                    <p>Bergabung dengan komunitas T4n OS untuk berdiskusi, berbagi pengalaman, dan mendapatkan bantuan dari pengguna lain.</p>
+                    <a href="#" class="card-link">
+                        Gabung Komunitas <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card">
+                    <h3>Kontribusi</h3>
+                    <p>Ikut berkontribusi pada pengembangan T4n OS dengan melaporkan bug, menyarankan fitur, atau mengirimkan pull request.</p>
+                    <a href="#" class="card-link">
+                        Cara Kontribusi <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang</h3>
+                    <p>T4n OS adalah distribusi Linux berbasis Void Linux dengan fokus pada kustomisasi dan performa.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#features">Fitur</a></li>
+                        <li><a href="#components">Komponen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Sumber Daya</h3>
+                    <ul>
+                        <li><a href="https://github.com/gh0st4n/T4n-OS" target="_blank">T4n OS</a></li>
+                        <li><a href="https://github.com/gh0st4n/VUR" target="_blank">VUR</a></li>
+                        <li><a href="https://github.com/gh0st4n/T4n-Manpy" target="_blank">VUR-Helper</a></li>
+                        <li><a href="https://void-linux.org/" target="_blank">Void Linux</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/gh0st4n" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-reddit"></i></a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 T4n OS. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('light-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                menuIcon.classList.replace('fa-times', 'fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuIcon.classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply initial styles and observe elements
+        document.querySelectorAll('.card, .feature').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
