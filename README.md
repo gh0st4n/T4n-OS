@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="/assets/Gh0st.png" alt="T4n OS Logo" width="300"/>
+</p>
+
 # T4n OS
 
 T4n OS adalah distribusi Linux berbasis Void Linux yang dirancang untuk pengguna yang mengutamakan kinerja, kesederhanaan, fleksibilitas, serta kemampuan kustomisasi maksimum. Filosofinya berfokus pada kebebasan penuh pengguna untuk mengontrol sistem, tanpa mengorbankan stabilitas maupun performa.
