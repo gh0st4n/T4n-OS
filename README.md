@@ -5,8 +5,6 @@ Awalnya ditujukan untuk **server**, tapi **bisa digunakan sebagai OS general-pur
 
 Ini **eksperimen bocah Atjeh** sekaligus upaya **memperkenalkan Void Linux** ke ranah server dan desktop power-user.
 
----
-
 ## 🎯 Tujuan
 
 - Menjadi OS:
@@ -22,8 +20,6 @@ Ini **eksperimen bocah Atjeh** sekaligus upaya **memperkenalkan Void Linux** ke 
   - Workstation
   - Lab eksperimen
 
----
-
 ## 🧱 Basis Sistem
 
 - **Base**: Void Linux
@@ -32,8 +28,6 @@ Ini **eksperimen bocah Atjeh** sekaligus upaya **memperkenalkan Void Linux** ke 
   - `systemd` (opsional)
 - **Package manager**: `xbps`
 - **Filosofi**: minimal → user tentukan sisanya
-
----
 
 ## 🖥️ Use Case: General / Desktop
 
@@ -94,8 +88,6 @@ Walaupun berangkat dari server, **T4n OS dapat digunakan untuk kebutuhan umum**,
   - Python
   - Shell scripting
 
----
-
 ## 📦 VUR (Void User Repo)
 
 **VUR** dibuat untuk:
@@ -105,8 +97,6 @@ Walaupun berangkat dari server, **T4n OS dapat digunakan untuk kebutuhan umum**,
   - Tool desktop
   - Utility power-user
   - Package eksperimental
-
----
 
 ## 🛠 VUR-Helper : T4n
 
@@ -123,16 +113,12 @@ Filosofi:
 - Cepat
 - Tidak banyak omong
 
----
-
 ## ⚙️ Kustomisasi Runit
 
 - Struktur service jelas
 - Mudah dipahami
 - Mudah dimodifikasi
 - Cocok untuk server **dan** desktop minimal
-
----
 
 ## 🧪 Status Proyek
 
@@ -146,16 +132,12 @@ Filosofi:
 - Developer
 - User yang mau belajar Linux serius
 
----
-
 ## 🧠 Filosofi
 
 - User pegang kendali penuh
 - Tidak ada magic
 - Tidak ada bloat
-- Kalau rusak → benerin sendiri
-
----
+- Kalau rusak → benerin sendiri = belajar
 
 ## 📢 Penutup
 
@@ -166,11 +148,6 @@ T4n OS:
 - Bisa jadi **alat belajar**
 
 Tergantung **seberapa paham user-nya**.
-
-> Ini bukan distro manja.  
-> Ini alat.
-
----
 
 ## 📜 Lisensi
 
