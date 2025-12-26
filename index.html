@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T4n OS - OS Based Void Linux</title>
+    <title>T4n OS - Sistem Operasi Berbasis Void Linux</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -68,6 +68,7 @@
         .nav-links {
             display: flex;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .nav-links li {
@@ -207,6 +208,31 @@
 
         .card-link:hover {
             text-decoration: underline;
+        }
+
+        /* Status badges */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .status-fixed {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .status-bug {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .status-new {
+            background-color: #2196f3;
+            color: white;
         }
 
         /* Gallery Section */
@@ -551,6 +577,9 @@
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#about">Tentang</a></li>
                 <li><a href="#goals">Goals</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#fixed">Fixed</a></li>
+                <li><a href="#bugs">Bug</a></li>
                 <li><a href="#gallery">Galeri</a></li>
                 <li><a href="#info">Info</a></li>
             </ul>
@@ -620,27 +649,91 @@
             </div>
         </section>
 
+        <section id="features" class="section">
+            <h2 class="section-title">Fitur</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div>
+                        <h3>VUR Integration <span class="status-badge status-new">COMING SOON</span></h3>
+                        <p>Integrasi penuh dengan Void User Repository (VUR) yang menyediakan akses ke ribuan paket tambahan yang tidak tersedia di repository resmi Void Linux.</p>
+                    </div>
+
+                    <div>
+                        <h3>Multiple Desktop Environments</h3>
+                        <p>Dukungan untuk berbagai lingkungan desktop termasuk XFCE4 untuk X11 dan KDE untuk Wayland, memberikan fleksibilitas penuh kepada pengguna.</p>
+                    </div>
+
+                    <div>
+                        <h3>Optimized Performance</h3>
+                        <p>Optimasi khusus untuk berbagai use case dari daily computing hingga server production, dengan fokus pada penggunaan sumber daya yang minimal.</p>
+                    </div>
+
+                    <div>
+                        <h3>Custom Init System <span class="status-badge status-new">COMING SOON</span></h3>
+                        <p>Sistem init runit yang dikustomisasi untuk booting ultra-cepat dan manajemen layanan yang efisien, dengan opsi untuk menggunakan SystemD pada server.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="fixed" class="section">
+            <h2 class="section-title">Fixed</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div>
+                        <div class="card">
+                            <h3>Pipewire<span class="status-badge status-fixed">FIXED</span></h3>
+                            <p>Perbaikan Server Audio pada T4n OS</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Wireplumber<span class="status-badge status-fixed">FIXED</span></h3>
+                            <p>Perbaikan Utilitas Pipewire</p>
+                        </div>
+                  </div>
+            </div>
+        </section>
+
+        <section id="bugs" class="section">
+            <h2 class="section-title">Bug</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div>
+                        <div class="card">
+                            <h3>Brightnessctl<span class="status-badge status-bug">BUG</span></h3>
+                            <p>Sistem tidak menyimpan set terakhir kali digunakan</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>DBUS Service<span class="status-badge status-bug">BUG</span></h3>
+                            <p>Adanya transparancy Terminal Emulator dan menjalankan dual window firefox secara bersamaan pada Session BSPWM yang menggunakan Lightdm</p>
+                        </div>
+                   </div>
+              </div>
+        </section>
+
         <section id="gallery" class="section">
             <h2 class="section-title">Galeri</h2>
             <div class="gallery-grid">
                 <div class="gallery-item" data-title="Void Linux Desktop" data-caption="Tampilan desktop Void Linux dengan environment yang bersih">
                     <img src="https://www.maketecheasier.com/assets/uploads/2022/01/voidlinux-29-featured-image.jpg?width=800&height=400" alt="Void Linux Desktop">
                     <div class="gallery-overlay">
-                        <h3>T4n OS - Dekstop</h3>
+                        <h3>Void Linux Desktop</h3>
                         <p>Tampilan desktop yang minimalis dan elegan</p>
                     </div>
                 </div>
                 <div class="gallery-item" data-title="Void Linux Terminal" data-caption="Terminal Void Linux dengan tampilan yang powerful">
                     <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Void Linux Terminal">
                     <div class="gallery-overlay">
-                        <h3>Terminal - T4n OS</h3>
+                        <h3>Terminal Void Linux</h3>
                         <p>Powerful terminal untuk pengguna advanced</p>
                     </div>
                 </div>
                 <div class="gallery-item" data-title="Void Linux Setup" data-caption="Proses instalasi Void Linux yang mudah">
                     <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Void Linux Setup">
                     <div class="gallery-overlay">
-                        <h3>Instalasi - T4n OS</h3>
+                        <h3>Instalasi Void Linux</h3>
                         <p>Proses setup yang cepat dan efisien</p>
                     </div>
                 </div>
@@ -654,7 +747,7 @@
                 <div class="gallery-item" data-title="Void Linux Server" data-caption="Void Linux sebagai server yang andal">
                     <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Void Linux Server">
                     <div class="gallery-overlay">
-                        <h3>T4n-Server Server</h3>
+                        <h3>Void Linux Server</h3>
                         <p>Server yang stabil dan aman</p>
                     </div>
                 </div>
@@ -674,7 +767,7 @@
                 <div class="card">
                     <h3>Dokumentasi</h3>
                     <p>Dokumentasi lengkap tentang instalasi, konfigurasi, dan penggunaan T4n OS beserta komponen-komponennya.</p>
-                    <a href="assets/Documents/index.html" class="card-link">
+                    <a href="#" class="card-link">
                         Baca Dokumentasi <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -688,7 +781,7 @@
                 <div class="card">
                     <h3>Kontribusi</h3>
                     <p>Ikut berkontribusi pada pengembangan T4n OS dengan melaporkan bug, menyarankan fitur, atau mengirimkan pull request.</p>
-                    <a href="https://github.com/gh0st4n/T4n-OS/issues" class="card-link">
+                    <a href="#" class="card-link">
                         Cara Kontribusi <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -704,11 +797,18 @@
                 <button class="modal-close" id="modal-close">&times;</button>
             </div>
             <div class="download-options">
-                <a href="#" target="_blank" class="download-option">
+                <a href="https://drive.google.com" target="_blank" class="download-option">
                     <i class="fab fa-google-drive"></i>
                     <div class="download-info">
                         <h3>Google Drive</h3>
                         <p>Unduh langsung dari Google Drive</p>
+                    </div>
+                </a>
+                <a href="https://sourceforge.net" target="_blank" class="download-option">
+                    <i class="fab fa-sourceforge"></i>
+                    <div class="download-info">
+                        <h3>SourceForge</h3>
+                        <p>Unduh dari SourceForge</p>
                     </div>
                 </a>
                 <a href="#" target="_blank" class="download-option">
@@ -744,6 +844,9 @@
                         <li><a href="#home">Beranda</a></li>
                         <li><a href="#about">Tentang</a></li>
                         <li><a href="#goals">Goals</a></li>
+                        <li><a href="#features">Fitur</a></li>
+                        <li><a href="#fixed">Fixed</a></li>
+                        <li><a href="#bugs">Bug</a></li>
                         <li><a href="#gallery">Galeri</a></li>
                         <li><a href="#info">Info</a></li>
                     </ul>
@@ -753,18 +856,19 @@
                     <ul>
                         <li><a href="https://github.com/gh0st4n/T4n-OS" target="_blank">T4n OS</a></li>
                         <li><a href="https://github.com/gh0st4n/VUR" target="_blank">VUR</a></li>
+                        <li><a href="https://github.com/gh0st4n/T4n-Manpy" target="_blank">VUR-Helper</a></li>
                         <li><a href="https://void-linux.org/" target="_blank">Void Linux</a></li>
                     </ul>
                 </div>
             </div>
             <div class="social-links">
                 <a href="https://github.com/gh0st4n" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-reddit"></i></a>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 T4n OS. Hak Cipta Dilindungi.</p>
+                <p>&copy; 2023 T4n OS. Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </footer>
