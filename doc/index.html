@@ -16,6 +16,7 @@
             --shadow-color: rgba(0, 0, 0, 0.1);
             --code-bg: #f8f9fa;
             --border-color: #e0e6ed;
+            --header-height: 70px;
         }
 
         [data-theme="dark"] {
@@ -56,6 +57,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: var(--header-height);
         }
 
         .logo {
@@ -90,12 +92,12 @@
         .sidebar {
             position: fixed;
             left: 0;
-            top: 0;
-            height: 100vh;
-            width: 250px;
+            top: var(--header-height);
+            height: calc(100vh - var(--header-height));
+            width: 280px;
             background-color: var(--sidebar-bg);
             box-shadow: 2px 0 10px var(--shadow-color);
-            z-index: 200;
+            z-index: 99;
             transform: translateX(-100%);
             transition: transform 0.3s ease;
             overflow-y: auto;
@@ -103,6 +105,21 @@
 
         .sidebar.active {
             transform: translateX(0);
+        }
+
+        /* Auto-close on desktop */
+        @media (min-width: 992px) {
+            .sidebar {
+                transform: translateX(-240px);
+            }
+            
+            .sidebar:hover {
+                transform: translateX(0);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
         }
 
         .sidebar-header {
@@ -119,7 +136,7 @@
             list-style: none;
         }
 
-        .sidebar-nav li {
+        .sidebar-nav > ul > li {
             margin-bottom: 0.5rem;
         }
 
@@ -143,10 +160,50 @@
             text-align: center;
         }
 
+        /* Nested navigation */
+        .nested-nav {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .nested-nav {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .nested-nav.active {
+            display: block;
+        }
+
+        .nested-nav a {
+            padding-left: 2.5rem;
+            font-size: 0.9rem;
+        }
+
+        .nested-nav .nested-nav a {
+            padding-left: 3.5rem;
+        }
+
+        .nested-nav .nested-nav .nested-nav a {
+            padding-left: 4.5rem;
+        }
+
+        .nav-toggle {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-toggle.open i {
+            transform: rotate(90deg);
+        }
+
         .sidebar-toggle {
             position: fixed;
             left: 15px;
-            top: 80px;
+            top: calc(var(--header-height) + 15px);
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
@@ -158,7 +215,7 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 2px 10px var(--shadow-color);
-            z-index: 150;
+            z-index: 101;
             transition: transform 0.3s ease;
         }
 
@@ -166,16 +223,19 @@
             transform: scale(1.1);
         }
 
-        .sidebar-toggle.active {
-            left: 265px;
-        }
-
         /* Main Content Styles */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            padding-top: calc(var(--header-height) + 2rem);
             transition: margin-left 0.3s ease;
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                margin-left: 40px;
+            }
         }
 
         .content-section {
@@ -237,6 +297,7 @@
             overflow-x: auto;
             margin: 1rem 0;
             border-left: 4px solid var(--primary-color);
+            position: relative;
         }
 
         pre code {
@@ -330,7 +391,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            z-index: 190;
+            z-index: 98;
             display: none;
         }
 
@@ -339,23 +400,11 @@
         }
 
         /* Responsive Styles */
-        @media (min-width: 768px) {
+        @media (max-width: 991px) {
             .container {
-                margin-left: 250px;
-            }
-            
-            .sidebar-toggle {
-                display: none;
-            }
-            
-            .sidebar {
-                transform: translateX(0);
-            }
-        }
-
-        @media (max-width: 767px) {
-            .container {
+                margin-left: 0;
                 padding: 1rem;
+                padding-top: calc(var(--header-height) + 1rem);
             }
             
             header {
@@ -400,28 +449,120 @@
         </div>
         <nav class="sidebar-nav">
             <ul>
-                <li><a href="#intro" class="nav-link active"><i class="fas fa-home"></i> Pengenalan</a></li>
-                <li><a href="#install" class="nav-link"><i class="fas fa-download"></i> Instalasi</a></li>
-                <li><a href="#packages" class="nav-link"><i class="fas fa-box"></i> Manajemen Paket</a></li>
-                <li><a href="#desktop" class="nav-link"><i class="fas fa-desktop"></i> Lingkungan Desktop</a></li>
-                <li><a href="#network" class="nav-link"><i class="fas fa-wifi"></i> Konfigurasi Jaringan</a></li>
-                <li><a href="#security" class="nav-link"><i class="fas fa-shield-alt"></i> Keamanan</a></li>
-                <li><a href="#troubleshooting" class="nav-link"><i class="fas fa-tools"></i> Pemecahan Masalah</a></li>
-                <li><a href="#faq" class="nav-link"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li>
+                    <div class="nav-toggle" id="about-toggle">
+                        <a href="#about"><i class="fas fa-info-circle"></i> 1. About</a>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="nested-nav" id="about-nav">
+                        <a href="#history"><i class="fas fa-history"></i> 1.1 History</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="installation-toggle">
+                        <a href="#installation"><i class="fas fa-download"></i> 2. Installation</a>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="nested-nav" id="installation-nav">
+                        <div class="nav-toggle" id="live-installer-toggle">
+                            <a href="#live-installer"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="nested-nav" id="live-installer-nav">
+                            <a href="#prepare-media"><i class="fas fa-usb"></i> 2.1.1 Prepare Installation Media</a>
+                            <a href="#partition-notes"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
+                            <a href="#installation-guide"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
+                        </div>
+                        <div class="nav-toggle" id="advanced-installation-toggle">
+                            <a href="#advanced-installation"><i class="fas fa-cogs"></i> 2.2 Advanced Installation Guide</a>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="nested-nav" id="advanced-installation-nav">
+                            <a href="#chroot-installation"><i class="fas fa-terminal"></i> 2.2.1 Installation via chroot (x86/x86_64/aarch64)</a>
+                            <div class="nav-toggle" id="arm-devices-toggle">
+                                <a href="#arm-devices"><i class="fas fa-microchip"></i> 2.2.2 ARM Devices</a>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="nested-nav" id="arm-devices-nav">
+                                <a href="#apple-silicon"><i class="fab fa-apple"></i> 2.2.2.1 Apple Silicon</a>
+                                <a href="#lenovo-thinkpad"><i class="fas fa-laptop"></i> 2.2.2.2 Lenovo Thinkpad X13s</a>
+                                <a href="#raspberry-pi"><i class="fas fa-microchip"></i> 2.2.2.3 Raspberry Pi - Coming Soon</a>
+                            </div>
+                        </div>
+                        <a href="#musl"><i class="fas fa-cube"></i> 2.3 Musl</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="configuration-toggle">
+                        <a href="#configuration"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="nested-nav" id="configuration-nav">
+                        <a href="#firmware"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
+                        <a href="#kernel"><i class="fas fa-server"></i> 3.2 Kernel</a>
+                        <a href="#date-time"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="#x11"><i class="fas fa-desktop"></i> 3.4 X11</a>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="#xfce4"><i class="fas fa-window-maximize"></i> 3.4.1 XFCE4</a>
+                            <a href="#bspwm"><i class="fas fa-th"></i> 3.4.2 BSPWM</a>
+                        </div>
+                        <div class="nav-toggle" id="wayland-toggle">
+                            <a href="#wayland"><i class="fas fa-desktop"></i> 3.5 Wayland</a>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="nested-nav" id="wayland-nav">
+                            <a href="#kde"><i class="fas fa-desktop"></i> 3.5.1 KDE</a>
+                            <a href="#river"><i class="fas fa-water"></i> 3.5.2 River</a>
+                        </div>
+                        <div class="nav-toggle" id="runit-toggle">
+                            <a href="#runit"><i class="fas fa-play-circle"></i> 3.6 Runit</a>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="nested-nav" id="runit-nav">
+                            <a href="#runit-usage"><i class="fas fa-book"></i> 3.6.1 How To Use Runit</a>
+                            <a href="#runit-build"><i class="fas fa-tools"></i> 3.6.2 How To Build Service</a>
+                            <a href="#runit-troubleshooting"><i class="fas fa-wrench"></i> 3.6.3 Troubleshooting</a>
+                        </div>
+                        <a href="#systemd"><i class="fas fa-cogs"></i> 3.7 SystemD</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="xbps-toggle">
+                        <a href="#xbps"><i class="fas fa-box"></i> 4. XBPS Package Manager</a>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="nested-nav" id="xbps-nav">
+                        <a href="#xbps-advanced"><i class="fas fa-cogs"></i> 4.1 Advanced Usage</a>
+                        <div class="nav-toggle" id="mirrors-toggle">
+                            <a href="#mirrors"><i class="fas fa-clone"></i> 4.2 Mirrors</a>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="nested-nav" id="mirrors-nav">
+                            <a href="#changing-mirrors"><i class="fas fa-exchange-alt"></i> 4.2.1 Changing Mirrors</a>
+                            <a href="#tor-mirror"><i class="fas fa-user-secret"></i> 4.2.2 Using Tor Mirror</a>
+                        </div>
+                        <a href="#xbps-troubleshooting"><i class="fas fa-wrench"></i> 4.3 Troubleshooting XBPS</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </aside>
 
     <main class="container">
-        <section id="intro" class="content-section">
-            <h1>Selamat Datang di T4n OS</h1>
+        <section id="about" class="content-section">
+            <h1>Tentang T4n OS</h1>
             <p>T4n OS adalah distribusi Linux yang ringan dan cepat, berbasis Void Linux dengan fokus pada stabilitas, keamanan, dan kemudahan penggunaan. T4n OS dirancang untuk pengguna yang menginginkan sistem operasi yang responsif dengan kontrol penuh atas lingkungan mereka.</p>
             
             <div class="alert">
                 <strong>Catatan:</strong> T4n OS menggunakan manajer paket XBPS (X Binary Package System) yang sangat cepat dan efisien.
             </div>
 
-            <h2>Mengapa Memilih T4n OS?</h2>
+            <h2 id="history">Sejarah</h2>
+            <p>T4n OS dimulai sebagai proyek pribadi untuk menciptakan distribusi Linux yang menggabungkan kestabilan Void Linux dengan peningkatan kinerja dan pengalaman pengguna yang lebih baik. Seiring waktu, proyek ini berkembang menjadi distribusi lengkap dengan komunitas yang aktif dan dukungan untuk berbagai perangkat keras.</p>
+            
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3><i class="fas fa-rocket"></i> Performa Tinggi</h3>
@@ -435,32 +576,40 @@
                     <h3><i class="fas fa-user-shield"></i> Keamanan</h3>
                     <p>T4n OS memiliki fokus pada keamanan dengan pembaruan keamanan yang cepat dan default yang aman.</p>
                 </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-puzzle-piece"></i> Fleksibilitas</h3>
-                    <p>Dengan berbagai pilihan lingkungan desktop dan aplikasi, Anda dapat menyesuaikan T4n OS sesuai kebutuhan Anda.</p>
-                </div>
             </div>
         </section>
 
-        <section id="install" class="content-section">
+        <section id="installation" class="content-section">
             <h2>Instalasi T4n OS</h2>
             <p>Berikut adalah panduan langkah demi langkah untuk menginstal T4n OS pada sistem Anda:</p>
             
-            <h3>1. Persiapan</h3>
-            <ul>
+            <h3 id="live-installer">Live Installer</h3>
+            <p>Live Installer T4n OS menyediakan cara termudah untuk menginstal sistem operasi ini pada komputer Anda.</p>
+            
+            <h4 id="prepare-media">2.1.1 Prepare Installation Media</h4>
+            <p>Untuk memulai instalasi, Anda perlu membuat media instalasi yang dapat di-boot:</p>
+            <ol>
                 <li>Unduh ISO T4n OS dari situs resmi</li>
-                <li>Buat bootable USB dengan menggunakan alat seperti Rufus (Windows) atau dd (Linux)</li>
-                <li>Backup data penting Anda</li>
-                <li> pastikan sistem memenuhi persyaratan minimum:
+                <li>Buat bootable USB dengan menggunakan alat seperti:
                     <ul>
-                        <li>Prosesor: x86_64</li>
-                        <li>RAM: minimal 1GB (direkomendasikan 2GB)</li>
-                        <li>Penyimpanan: minimal 10GB</li>
+                        <li>Rufus (Windows)</li>
+                        <li>dd (Linux/macOS)</li>
+                        <li>Etcher (Cross-platform)</li>
                     </ul>
                 </li>
+                <li>Verifikasi integritas ISO dengan checksum yang disediakan</li>
+            </ol>
+            
+            <h4 id="partition-notes">2.1.2 Partition Notes</h4>
+            <p>Partisi yang direkomendasikan untuk T4n OS:</p>
+            <ul>
+                <li>/boot/efi (512MB, FAT32, untuk sistem UEFI)</li>
+                <li>/ (minimal 15GB, ext4)</li>
+                <li>swap (ukuran sama dengan RAM atau 2GB, whichever is larger)</li>
+                <li>/home (sisa ruang, ext4, opsional)</li>
             </ul>
-
-            <h3>2. Proses Instalasi</h3>
+            
+            <h4 id="installation-guide">2.1.3 Installation Guide</h4>
             <ol>
                 <li>Boot dari USB yang telah Anda siapkan</li>
                 <li>Pilih "Start T4n OS" dari menu boot</li>
@@ -482,283 +631,213 @@
                 <li>Restart sistem dan lepaskan USB</li>
             </ol>
 
+            <h3 id="advanced-installation">Advanced Installation Guide</h3>
+            
+            <h4 id="chroot-installation">2.2.1 Installation via chroot (x86/x86_64/aarch64)</h4>
+            <p>Untuk instalasi lanjutan melalui chroot:</p>
+            <pre><code># Mount partisi target
+sudo mount /dev/sdXn /mnt
+
+# Install base system
+sudo xbps-install -S -R https://repo-default.voidlinux.org/current -r /mnt base-system
+
+# Chroot ke sistem baru
+sudo xchroot /mnt /bin/bash
+
+# Konfigurasi sistem (hostname, fstab, dll)
+# Instal kernel dan bootloader
+# Konfigurasi pengguna</code></pre>
+            
+            <h4 id="arm-devices">2.2.2 ARM Devices</h4>
+            <p>T4n OS juga mendukung berbagai perangkat ARM:</p>
+            
+            <h5 id="apple-silicon">2.2.2.1 Apple Silicon</h5>
+            <p>Untuk instalasi pada perangkat Apple Silicon (M1/M2):</p>
+            <pre><code># Unduh image khusus Apple Silicon
+# Ikuti panduan di wiki T4n OS untuk proses instalasi</code></pre>
+            
+            <h5 id="lenovo-thinkpad">2.2.2.2 Lenovo Thinkpad X13s</h5>
+            <p>Untuk instalasi pada Lenovo Thinkpad X13s:</p>
+            <pre><code># Gunakan image khusus untuk Snapdragon X55
+# Ikuti panduan konfigurasi khusus untuk perangkat ini</code></pre>
+            
+            <h5 id="raspberry-pi">2.2.2.3 Raspberry Pi - Coming Soon</h5>
+            <p>Dukungan untuk Raspberry Pi sedang dalam pengembangan dan akan segera tersedia.</p>
+            
+            <h3 id="musl">2.3 Musl</h3>
+            <p>T4n OS juga tersedia dengan libc Musl sebagai alternatif dari glibc:</p>
+            <ul>
+                <li>Unduh image khusus Musl dari situs resmi</li>
+                <li>Ikuti proses instalasi standar</li>
+                <li>Perhatikan bahwa beberapa aplikasi mungkin tidak kompatibel dengan Musl</li>
+            </ul>
+            
             <div class="alert warning">
                 <strong>Peringatan:</strong> Pastikan Anda memilih partisi yang benar saat menginstal untuk menghindari kehilangan data.
             </div>
         </section>
 
-        <section id="packages" class="content-section">
-            <h2>Manajemen Paket</h2>
-            <p>T4n OS menggunakan XBPS (X Binary Package System) sebagai manajer paketnya. XBPS adalah manajer paket yang cepat, efisien, dan andal.</p>
+        <section id="configuration" class="content-section">
+            <h2>Konfigurasi Sistem</h2>
             
-            <h3>Perintah Dasar XBPS</h3>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3><i class="fas fa-sync"></i> Memperbarui Repository</h3>
-                    <pre><code>sudo xbps-install -S</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-download"></i> Menginstal Paket</h3>
-                    <pre><code>sudo xbps-install nama_paket</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-trash"></i> Menghapus Paket</h3>
-                    <pre><code>sudo xbps-remove nama_paket</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-search"></i> Mencari Paket</h3>
-                    <pre><code>xbps-query -Rs kata_kunci</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-info-circle"></i> Informasi Paket</h3>
-                    <pre><code>xbps-query -R nama_paket</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-sync-alt"></i> Memperbarui Sistem</h3>
-                    <pre><code>sudo xbps-install -Su</code></pre>
-                </div>
-            </div>
+            <h3 id="firmware">3.1 Firmware</h3>
+            <p>Untuk mengelola firmware pada T4n OS:</p>
+            <pre><code># Instal firmware tambahan
+sudo xbps-install linux-firmware
 
-            <h3>Repository Tambahan</h3>
-            <p>T4n OS memiliki beberapa repository yang dapat Anda tambahkan:</p>
-            <ul>
-                <li>Nonfree: Untuk perangkat lunak non-libre</li>
-                <li>Multilib: Untuk aplikasi 32-bit di sistem 64-bit</li>
-                <li>Community: Untuk paket yang dipelihara oleh komunitas</li>
-            </ul>
+# Untuk perangkat WiFi khusus
+sudo xbps-install linux-firmware-intel
+sudo xbps-install linux-firmware-nvidia</code></pre>
             
-            <p>Untuk menambahkan repository, edit file <code>/etc/xbps.d/00-repository-main.conf</code> dan tambahkan baris berikut:</p>
-            <pre><code>repository=https://repo-default.voidlinux.org/current/nonfree
-repository=https://repo-default.voidlinux.org/current/multilib
-repository=https://repo-default.voidlinux.org/current/community</code></pre>
-        </section>
+            <h3 id="kernel">3.2 Kernel</h3>
+            <p>T4n OS mendukung beberapa kernel:</p>
+            <pre><code># Kernel default (LTS)
+sudo xbps-install linux
 
-        <section id="desktop" class="content-section">
-            <h2>Lingkungan Desktop</h2>
-            <p>T4n OS mendukung berbagai lingkungan desktop yang dapat Anda pilih sesuai preferensi:</p>
+# Kernel terbaru
+sudo xbps-install linux-current
+
+# Kernel dengan patch khusus
+sudo xbps-install linux-xanmod</code></pre>
             
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3><i class="fas fa-desktop"></i> KDE Plasma</h3>
-                    <p>Lingkungan desktop modern dengan fitur lengkap dan kustomisasi tinggi.</p>
-                    <pre><code>sudo xbps-install -S kde5</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-leaf"></i> XFCE</h3>
-                    <p>Lingkungan desktop ringan namun powerful, ideal untuk sistem dengan sumber daya terbatas.</p>
-                    <pre><code>sudo xbps-install -S xfce4</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-feather"></i> LXQt</h3>
-                    <p>Lingkungan desktop yang sangat ringan dan modern, dibangun dengan Qt.</p>
-                    <pre><code>sudo xbps-install -S lxqt</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-adjust"></i> MATE</h3>
-                    <p>Lingkungan desktop yang melanjutkan tradisi GNOME 2, stabil dan familiar.</p>
-                    <pre><code>sudo xbps-install -S mate</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-compass"></i> Cinnamon</h3>
-                    <p>Lingkungan desktop yang dikembangkan oleh Linux Mint, modern dan intuitif.</p>
-                    <pre><code>sudo xbps-install -S cinnamon</code></pre>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-window-maximize"></i> i3wm</h3>
-                    <p>Manajer jendela tiling yang ringan dan efisien untuk pengguna produktivitas.</p>
-                    <pre><code>sudo xbps-install -S i3</code></pre>
-                </div>
-            </div>
+            <h3 id="date-time">3.3 Date and Time</h3>
+            <p>Untuk mengkonfigurasi tanggal dan waktu:</p>
+            <pre><code># Set zona waktu
+sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
-            <h3>Mengaktifkan Display Manager</h3>
-            <p>Setelah menginstal lingkungan desktop, Anda perlu menginstal dan mengaktifkan display manager:</p>
-            <pre><code># Untuk SDDM (direkomendasikan untuk KDE)
-sudo xbps-install sddm
-sudo ln -s /etc/sv/sddm /var/service/
-
-# Untuk LightDM (kompatibel dengan sebagian besar DE)
+# Sinkronisasi waktu dengan NTP
+sudo xbps-install chrony
+sudo ln -s /etc/sv/chronyd /var/service/
+sudo sv up chronyd</code></pre>
+            
+            <h3 id="x11">3.4 X11</h3>
+            <p>X11 adalah sistem jendela tradisional untuk Linux:</p>
+            
+            <h4 id="xfce4">3.4.1 XFCE4</h4>
+            <p>Untuk menginstal XFCE4:</p>
+            <pre><code>sudo xbps-install xfce4
+sudo xbps-install xfce4-terminal
 sudo xbps-install lightdm lightdm-gtk3-greeter
 sudo ln -s /etc/sv/lightdm /var/service/</code></pre>
+            
+            <h4 id="bspwm">3.4.2 BSPWM</h4>
+            <p>Untuk menginstal BSPWM:</p>
+            <pre><code>sudo xbps-install bspwm sxhkd
+# Konfigurasi di ~/.config/bspwm/ dan ~/.config/sxhkd/</code></pre>
+            
+            <h3 id="wayland">3.5 Wayland</h3>
+            <p>Wayland adalah pengganti modern untuk X11:</p>
+            
+            <h4 id="kde">3.5.1 KDE</h4>
+            <p>Untuk menginstal KDE Plasma dengan Wayland:</p>
+            <pre><code>sudo xbps-install kde5
+sudo xbps-install sddm
+sudo ln -s /etc/sv/sddm /var/service/
+# Pilih session "Plasma (Wayland)" di login manager</code></pre>
+            
+            <h4 id="river">3.5.2 River</h4>
+            <p>Untuk menginstal River, tiling Wayland compositor:</p>
+            <pre><code>sudo xbps-install river
+# Konfigurasi di ~/.config/river/init</code></pre>
+            
+            <h3 id="runit">3.6 Runit</h3>
+            <p>Runit adalah init system default di T4n OS:</p>
+            
+            <h4 id="runit-usage">3.6.1 How To Use Runit</h4>
+            <pre><code># Melihat layanan yang aktif
+sudo sv status /var/service/*
+
+# Mengaktifkan layanan
+sudo ln -s /etc/sv/nama_layanan /var/service/
+
+# Menonaktifkan layanan
+sudo rm /var/service/nama_layanan</code></pre>
+            
+            <h4 id="runit-build">3.6.2 How To Build Service</h4>
+            <p>Struktur direktori layanan runit:</p>
+            <pre><code>/etc/sv/nama_layanan/
+├── run          # Script utama untuk menjalankan layanan
+├── finish       # Script yang dijalankan saat layanan berhenti
+└── log/         # Direktori untuk logging (opsional)
+    └── run      # Script untuk logging</code></pre>
+            
+            <h4 id="runit-troubleshooting">3.6.3 Troubleshooting</h4>
+            <p>Untuk troubleshooting layanan runit:</p>
+            <pre><code># Melihat log layanan
+sudo sv log nama_layanan
+
+# Restart layanan
+sudo sv restart nama_layanan
+
+# Memeriksa status detail
+sudo sv status nama_layanan</code></pre>
+            
+            <h3 id="systemd">3.7 SystemD</h3>
+            <p>Bagi pengguna yang lebih familiar dengan systemd, T4n OS juga menyediakan varian dengan systemd:</p>
+            <pre><code># Menginstal systemd
+sudo xbps-install systemd
+
+# Mengganti dari runit ke systemd (diperlukan instalasi ulang)</code></pre>
         </section>
 
-        <section id="network" class="content-section">
-            <h2>Konfigurasi Jaringan</h2>
-            <p>T4n OS menggunakan NetworkManager untuk mengelola koneksi jaringan. Berikut adalah panduan konfigurasi jaringan dasar:</p>
+        <section id="xbps" class="content-section">
+            <h2>XBPS Package Manager</h2>
+            <p>XBPS (X Binary Package System) adalah manajer paket yang cepat dan efisien yang digunakan oleh T4n OS.</p>
             
-            <h3>1. Menggunakan NetworkManager</h3>
-            <p>NetworkManager biasanya sudah terinstal dan berjalan secara default. Anda dapat menggunakannya melalui:</p>
-            <ul>
-                <li>GUI: nm-applet (applet di system tray)</li>
-                <li>CLI: nmcli</li>
-                <li>TUI: nmtui</li>
-            </ul>
+            <h3 id="xbps-advanced">4.1 Advanced Usage</h3>
+            <p>Penggunaan lanjutan XBPS:</p>
+            <pre><code># Mencari paket dengan deskripsi
+xbps-query -Rs "deskripsi paket"
+
+# Melihat dependensi paket
+xbps-query -Rd nama_paket
+
+# Menginstal paket dari file lokal
+xbps-install -y /path/to/package.xbps
+
+# Mengunci versi paket
+xbps-pkgdb -m hold nama_paket
+
+# Melepaskan kunci paket
+xbps-pkgdb -m unhold nama_paket</code></pre>
             
-            <h3>2. Menghubungkan ke WiFi via CLI</h3>
-            <pre><code># Melihat jaringan WiFi yang tersedia
-nmcli dev wifi list
-
-# Menghubungkan ke jaringan WiFi
-nmcli dev wifi connect "SSID" password "password_anda"</code></pre>
+            <h3 id="mirrors">4.2 Mirrors</h3>
+            <p>Mirror adalah server yang menyimpan repositori paket T4n OS.</p>
             
-            <h3>3. Konfigurasi IP Statis</h3>
-            <pre><code># Mengatur IP statis untuk koneksi kabel
-nmcli con mod "Wired connection 1" ipv4.addresses 192.168.1.100/24
-nmcli con mod "Wired connection 1" ipv4.gateway 192.168.1.1
-nmcli con mod "Wired connection 1" ipv4.dns "8.8.8.8,8.8.4.4"
-nmcli con mod "Wired connection 1" ipv4.method manual
-nmcli con up "Wired connection 1"</code></pre>
+            <h4 id="changing-mirrors">4.2.1 Changing Mirrors</h4>
+            <p>Untuk mengganti mirror:</p>
+            <pre><code># Edit konfigurasi mirror
+sudo nano /etc/xbps.d/00-repository-main.conf
 
-            <h3>4. Firewall</h3>
-            <p>T4n OS menggunakan iptables/nftables sebagai firewall default. Untuk kemudahan, Anda dapat menggunakan ufw (Uncomplicated Firewall):</p>
-            <pre><code># Instalasi
-sudo xbps-install ufw
-
-# Mengaktifkan firewall
-sudo ufw enable
-
-# Mengizinkan SSH
-sudo ufw allow ssh
-
-# Melihat status
-sudo ufw status</code></pre>
-        </section>
-
-        <section id="security" class="content-section">
-            <h2>Keamanan</h2>
-            <p>Keamanan adalah prioritas utama dalam T4n OS. Berikut adalah beberapa praktik keamanan yang direkomendasikan:</p>
+# Contoh konfigurasi
+repository=https://mirror.voidlinux.org/current
+repository=https://repo-default.voidlinux.org/current</code></pre>
             
-            <h3>1. Pembaruan Keamanan</h3>
-            <p>Secara berkala periksa dan instal pembaruan keamanan:</p>
-            <pre><code>sudo xbps-install -Su</code></pre>
-            
-            <h3>2. Pengguna Non-Root</h3>
-            <p>Hindari menggunakan akun root untuk aktivitas sehari-hari. Gunakan sudo untuk perintah yang memerlukan hak akses root:</p>
-            <pre><code># Menambahkan pengguna ke grup wheel
-sudo usermod -aG wheel nama_pengguna</code></pre>
-            
-            <h3>3. Enkripsi Disk</h3>
-            <p>Untuk melindungi data Anda, pertimbangkan untuk mengenkripsi disk dengan LUKS:</p>
-            <pre><code># Membuat partisi terenkripsi
-sudo cryptsetup luksFormat /dev/sdXn
+            <h4 id="tor-mirror">4.2.2 Using Tor Mirror</h4>
+            <p>Untuk menggunakan mirror melalui Tor:</p>
+            <pre><code># Instal tor
+sudo xbps-install tor
 
-# Membuka partisi terenkripsi
-sudo cryptsetup open /dev/sdXn cryptname
-
-# Membuat filesystem
-sudo mkfs.ext4 /dev/mapper/cryptname</code></pre>
+# Konfigurasi XBPS untuk menggunakan Tor
+repository=http://tor-mirror.voidlinux.org/current</code></pre>
             
-            <h3>4. AppArmor</h3>
-            <p>AppArmor adalah modul keamanan kernel yang membatasi kemampuan aplikasi:</p>
-            <pre><code># Instalasi
-sudo xbps-install apparmor
-
-# Mengaktifkan profil
-sudo aa-enforce /etc/apparmor.d/*</code></pre>
-            
-            <div class="alert">
-                <strong>Tip:</strong> Gunakan kata sandi yang kuat dan unik untuk setiap akun. Pertimbangkan untuk menggunakan pengelola kata sandi seperti KeePassXC.
-            </div>
-        </section>
-
-        <section id="troubleshooting" class="content-section">
-            <h2>Pemecahan Masalah</h2>
-            <p>Berikut adalah solusi untuk beberapa masalah umum yang mungkin Anda temui di T4n OS:</p>
-            
-            <h3>1. Sistem Tidak Boot</h3>
-            <p>Jika sistem tidak dapat boot, coba langkah-langkah berikut:</p>
-            <ul>
-                <li>Boot dari live USB dan gunakan chroot untuk memperbaiki masalah:</li>
-            </ul>
-            <pre><code># Mount partisi root
-sudo mount /dev/sdXn /mnt
-
-# Mount partisi boot jika terpisah
-sudo mount /dev/sdYn /mnt/boot
-
-# Mount filesystem virtual
-sudo mount --bind /dev /mnt/dev
-sudo mount --bind /proc /mnt/proc
-sudo mount --bind /sys /mnt/sys
-
-# Masuk ke sistem yang terinstal
-sudo chroot /mnt /bin/bash</code></pre>
-            
-            <h3>2. Masalah Jaringan</h3>
-            <p>Jika Anda mengalami masalah dengan koneksi jaringan:</p>
-            <ul>
-                <li>Periksa status NetworkManager:</li>
-            </ul>
-            <pre><code>sudo sv status NetworkManager</code></pre>
-            <ul>
-                <li>Restart NetworkManager jika diperlukan:</li>
-            </ul>
-            <pre><code>sudo sv restart NetworkManager</code></pre>
-            
-            <h3>3. Masalah Audio</h3>
-            <p>Jika audio tidak berfungsi:</p>
-            <ul>
-                <li>Periksa apakah ALSA terinstal:</li>
-            </ul>
-            <pre><code>sudo xbps-install alsa-utils</code></pre>
-            <ul>
-                <li>Unmute channel audio:</li>
-            </ul>
-            <pre><code>amixer sset Master unmute
-amixer sset Speaker unmute</code></pre>
-            
-            <h3>4. Masalah Display Manager</h3>
-            <p>Jika display manager tidak berfungsi:</p>
-            <ul>
-                <li>Periksa log:</li>
-            </ul>
-            <pre><code>journalctl -b -u display-manager</code></pre>
-            <ul>
-                <li>Restart display manager:</li>
-            </ul>
-            <pre><code>sudo sv restart display-manager</code></pre>
-            
-            <h3>5. Masalah Paket Rusak</h3>
-            <p>Jika Anda mengalami masalah dengan paket yang rusak:</p>
-            <pre><code># Perbaiki database paket
+            <h3 id="xbps-troubleshooting">4.3 Troubleshooting XBPS</h3>
+            <p>Memecahkan masalah umum dengan XBPS:</p>
+            <pre><code># Memperbaiki database paket yang rusak
 sudo xbps-install -Sf
 
-# Hapus cache paket yang rusak
-sudo xbps-remove -O</code></pre>
-        </section>
+# Membersihkan cache
+sudo xbps-remove -O
 
-        <section id="faq" class="content-section">
-            <h2>FAQ (Pertanyaan yang Sering Diajukan)</h2>
-            
-            <h3>Q: Apa perbedaan antara T4n OS dan Void Linux?</h3>
-            <p>A: T4n OS adalah distribusi berbasis Void Linux dengan tambahan repositori, tema khusus, dan beberapa aplikasi pre-installed untuk pengalaman yang lebih mudah bagi pengguna.</p>
-            
-            <h3>Q: Bagaimana cara mengupgrade T4n OS?</h3>
-            <p>A: T4n OS menggunakan model rolling release, jadi Anda hanya perlu menjalankan <code>sudo xbps-install -Su</code> secara berkala untuk mendapatkan pembaruan terbaru.</p>
-            
-            <h3>Q: Bisakah saya menggunakan T4n OS di laptop lama?</h3>
-            <p>A: Ya, T4n OS dirancang untuk ringan dan efisien, sehingga dapat berjalan dengan baik di laptop lama. Pilih lingkungan desktop yang ringan seperti XFCE atau LXQt untuk performa terbaik.</p>
-            
-            <h3>Q: Bagaimana cara menginstal perangkat lunak non-libre?</h3>
-            <p>A: Anda perlu menambahkan repository nonfree dengan mengedit file <code>/etc/xbps.d/00-repository-main.conf</code> dan menambahkan baris <code>repository=https://repo-default.voidlinux.org/current/nonfree</code>, lalu jalankan <code>sudo xbps-install -S</code>.</p>
-            
-            <h3>Q: Bagaimana cara mengoptimalkan baterai laptop?</h3>
-            <p>A: Instal tlp untuk manajemen daya yang lebih baik:</p>
-            <pre><code>sudo xbps-install tlp
-sudo ln -s /etc/sv/tlp /var/service/
-sudo sv up tlp</code></pre>
-            
-            <h3>Q: Bisakah saya menjalankan aplikasi Windows di T4n OS?</h3>
-            <p>A: Ya, Anda dapat menggunakan Wine untuk menjalankan banyak aplikasi Windows:</p>
-            <pre><code>sudo xbps-install wine</code></pre>
-            
-            <h3>Q: Bagaimana cara berkontribusi pada T4n OS?</h3>
-            <p>A: Anda dapat berkontribusi dengan melaporkan bug, menerjemahkan dokumentasi, atau mengembangkan paket. Kunjungi situs resmi T4n OS untuk informasi lebih lanjut.</p>
+# Memeriksa integritas paket
+xbps-query -C
+
+# Mengatasi konflik paket
+sudo xbps-install -f nama_paket_yang_bermasalah</code></pre>
             
             <div class="alert">
-                <strong>Butuh bantuan lebih lanjut?</strong> Kunjungi forum komunitas T4n OS atau bergabung dengan channel Discord kami untuk mendapatkan bantuan dari komunitas.
+                <strong>Tip:</strong> Selalu perbarui indeks paket sebelum menginstal atau memperbarui paket dengan <code>sudo xbps-install -S</code>.
             </div>
-            
-            <button class="btn">Unduh T4n OS Sekarang</button>
         </section>
     </main>
 
@@ -797,31 +876,48 @@ sudo sv up tlp</code></pre>
         const sidebarToggle = document.getElementById('sidebar-toggle');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
-        const navLinks = document.querySelectorAll('.nav-link');
         
         sidebarToggle.addEventListener('click', () => {
             sidebar.classList.toggle('active');
-            sidebarToggle.classList.toggle('active');
             overlay.classList.toggle('active');
         });
         
         overlay.addEventListener('click', () => {
             sidebar.classList.remove('active');
-            sidebarToggle.classList.remove('active');
             overlay.classList.remove('active');
         });
         
-        // Active Navigation Link
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.forEach(item => item.classList.remove('active'));
-                link.classList.add('active');
+        // Nested Navigation Toggle
+        const navToggles = document.querySelectorAll('.nav-toggle');
+        
+        navToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = toggle.id.replace('-toggle', '-nav');
+                const targetNav = document.getElementById(targetId);
                 
-                // Close sidebar on mobile after clicking a link
-                if (window.innerWidth <= 767) {
-                    sidebar.classList.remove('active');
-                    sidebarToggle.classList.remove('active');
-                    overlay.classList.remove('active');
+                if (targetNav) {
+                    targetNav.classList.toggle('active');
+                    toggle.classList.toggle('open');
+                }
+            });
+        });
+        
+        // Active Navigation Link
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Don't prevent default for toggle elements
+                if (!link.parentElement.classList.contains('nav-toggle')) {
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    link.classList.add('active');
+                    
+                    // Close sidebar on mobile after clicking a link
+                    if (window.innerWidth <= 991) {
+                        sidebar.classList.remove('active');
+                        overlay.classList.remove('active');
+                    }
                 }
             });
         });
@@ -829,17 +925,20 @@ sudo sv up tlp</code></pre>
         // Smooth Scrolling for Navigation Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                // Don't prevent default for toggle elements
+                if (!this.parentElement.classList.contains('nav-toggle')) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
