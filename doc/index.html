@@ -5,438 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokumentasi T4n OS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #64ffda;
-            --secondary-color: #82b1ff;
-            --background-color: #f5f7fa;
-            --text-color: #2c3e50;
-            --card-bg: #ffffff;
-            --sidebar-bg: #ffffff;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --code-bg: #f8f9fa;
-            --border-color: #e0e6ed;
-            --header-height: 70px;
-        }
-
-        [data-theme="dark"] {
-            --primary-color: #64ffda;
-            --secondary-color: #536dfe;
-            --background-color: #121212;
-            --text-color: #e0e0e0;
-            --card-bg: #1e1e1e;
-            --sidebar-bg: #1e1e1e;
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --code-bg: #2d2d2d;
-            --border-color: #3a3a3a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            line-height: 1.6;
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #ffffff;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px var(--shadow-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: var(--header-height);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .logo i {
-            margin-right: 0.5rem;
-        }
-
-        .theme-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Sidebar Styles - Desktop */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: var(--header-height);
-            height: calc(100vh - var(--header-height));
-            width: 320px;
-            background-color: var(--sidebar-bg);
-            box-shadow: 2px 0 10px var(--shadow-color);
-            z-index: 99;
-            overflow-y: auto;
-            transition: transform 0.3s ease;
-        }
-
-        /* Desktop sidebar - always visible */
-        @media (min-width: 1200px) {
-            .sidebar {
-                transform: translateX(0);
-            }
-        }
-
-        /* Mobile sidebar - hidden by default, slides from top */
-        @media (max-width: 1199px) {
-            .sidebar {
-                width: 100%;
-                left: 0;
-                top: var(--header-height);
-                transform: translateY(-100%);
-                max-height: 60vh;
-            }
-            
-            .sidebar.active {
-                transform: translateY(0);
-            }
-        }
-
-        .sidebar-header {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-        }
-
-        .sidebar-nav {
-            padding: 1rem 0;
-        }
-
-        .sidebar-nav ul {
-            list-style: none;
-        }
-
-        .sidebar-nav > ul > li {
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-nav a {
-            display: flex;
-            align-items: center;
-            padding: 0.6rem 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: background 0.2s ease;
-            font-size: 0.9rem;
-        }
-
-        .sidebar-nav a:hover, .sidebar-nav a.active {
-            background-color: rgba(100, 255, 218, 0.1);
-            border-left: 3px solid var(--primary-color);
-        }
-
-        .sidebar-nav i {
-            margin-right: 0.75rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        /* Nested navigation - always visible */
-        .nested-nav {
-            display: block;
-            background-color: rgba(0, 0, 0, 0.03);
-        }
-
-        [data-theme="dark"] .nested-nav {
-            background-color: rgba(255, 255, 255, 0.03);
-        }
-
-        .nested-nav a {
-            padding-left: 2.5rem;
-            font-size: 0.85rem;
-        }
-
-        .nested-nav .nested-nav a {
-            padding-left: 3.5rem;
-            font-size: 0.8rem;
-        }
-
-        .nested-nav .nested-nav .nested-nav a {
-            padding-left: 4.5rem;
-            font-size: 0.75rem;
-        }
-
-        /* Remove toggle styles */
-        .nav-toggle {
-            cursor: default;
-            user-select: none;
-        }
-
-        .nav-toggle i.fa-chevron-right {
-            display: none;
-        }
-
-        .sidebar-toggle {
-            position: fixed;
-            left: 15px;
-            top: calc(var(--header-height) + 15px);
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px var(--shadow-color);
-            z-index: 101;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        /* Hide sidebar toggle on desktop */
-        @media (min-width: 1200px) {
-            .sidebar-toggle {
-                display: none;
-            }
-        }
-
-        /* Main Content Styles */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            padding-top: calc(var(--header-height) + 2rem);
-            transition: margin-left 0.3s ease;
-        }
-
-        /* Desktop - push content to the right */
-        @media (min-width: 1200px) {
-            .container {
-                margin-left: 360px;
-                margin-right: 40px;
-            }
-        }
-
-        /* Mobile - full width */
-        @media (max-width: 1199px) {
-            .container {
-                margin-left: 20px;
-                margin-right: 20px;
-                padding: 1rem;
-                padding-top: calc(var(--header-height) + 1rem);
-            }
-        }
-
-        .content-section {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1, h2, h3 {
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-            margin-top: 2rem;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            margin-top: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        p {
-            margin-bottom: 1rem;
-            text-align: justify;
-        }
-
-        code {
-            background-color: var(--code-bg);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-            color: var(--primary-color);
-        }
-
-        pre {
-            background-color: var(--code-bg);
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1rem 0;
-            border-left: 4px solid var(--primary-color);
-            position: relative;
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            color: var(--text-color);
-        }
-
-        ul, ol {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 3px solid var(--primary-color);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--shadow-color);
-        }
-
-        .feature-card h3 {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card i {
-            margin-right: 0.75rem;
-            color: var(--primary-color);
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 1rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.4);
-        }
-
-        .alert {
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            border-left: 4px solid var(--primary-color);
-            background-color: rgba(100, 255, 218, 0.1);
-        }
-
-        .alert.warning {
-            border-left-color: #ff9800;
-            background-color: rgba(255, 152, 0, 0.1);
-        }
-
-        .alert.error {
-            border-left-color: #f44336;
-            background-color: rgba(244, 67, 54, 0.1);
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 98;
-            display: none;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 1199px) {
-            header {
-                padding: 1rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
     <header>
@@ -458,106 +27,95 @@
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h2>T4n OS</h2>
-            <p>Berdasarkan Void Linux</p>
+            <p>Based on Void Linux</p>
         </div>
         <nav class="sidebar-nav">
             <ul>
                 <li>
                     <div class="nav-toggle" id="about-toggle">
-                        <a href="#about"><i class="fas fa-info-circle"></i> 1. About</a>
-                        <i class="fas fa-chevron-right"></i>
+                        <a href="#"><i class="fas fa-info-circle"></i> 1. About</a>
                     </div>
                     <div class="nested-nav" id="about-nav">
-                        <a href="#history"><i class="fas fa-history"></i> 1.1 History</a>
+                        <a href="../doc/page/main001.html"><i class="fas fa-history"></i> 1.1 History</a>
                     </div>
                 </li>
                 <li>
                     <div class="nav-toggle" id="installation-toggle">
-                        <a href="#installation"><i class="fas fa-download"></i> 2. Installation</a>
-                        <i class="fas fa-chevron-right"></i>
+                        <a href="../doc/page/main002.html"><i class="fas fa-download"></i> 2. Installation</a>
                     </div>
                     <div class="nested-nav" id="installation-nav">
                         <div class="nav-toggle" id="live-installer-toggle">
-                            <a href="#live-installer"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
-                            <i class="fas fa-chevron-right"></i>
+                            <a href="../doc/page/main003.html"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
                         </div>
                         <div class="nested-nav" id="live-installer-nav">
-                            <a href="#prepare-media"><i class="fas fa-usb"></i> 2.1.1 Prepare Installation Media</a>
-                            <a href="#partition-notes"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
-                            <a href="#installation-guide"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
+                            <a href="../doc/page/main004.html"><i class="fas fa-hdd"></i> 2.1.1 Prepare Installation Media</a>
+                            <a href="../doc/page/main005.html"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
+                            <a href="../doc/page/main006.html"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
                         </div>
                         <div class="nav-toggle" id="advanced-installation-toggle">
-                            <a href="#advanced-installation"><i class="fas fa-cogs"></i> 2.2 Advanced Installation Guide</a>
-                            <i class="fas fa-chevron-right"></i>
+                            <a href="../doc/page/main007.html"><i class="fas fa-cogs"></i> 2.2 Advanced Installation Guide</a>
                         </div>
                         <div class="nested-nav" id="advanced-installation-nav">
-                            <a href="#chroot-installation"><i class="fas fa-terminal"></i> 2.2.1 Installation via chroot (x86/x86_64/aarch64)</a>
+                            <a href="../doc/page/main008.html"><i class="fas fa-terminal"></i> 2.2.1 Installation via chroot (x86/x86_64/aarch64)</a>
                             <div class="nav-toggle" id="arm-devices-toggle">
-                                <a href="#arm-devices"><i class="fas fa-microchip"></i> 2.2.2 ARM Devices</a>
-                                <i class="fas fa-chevron-right"></i>
+                                <a href="../doc/page/main009.html"><i class="fas fa-microchip"></i> 2.2.2 ARM Devices</a>
                             </div>
                             <div class="nested-nav" id="arm-devices-nav">
-                                <a href="#apple-silicon"><i class="fab fa-apple"></i> 2.2.2.1 Apple Silicon</a>
-                                <a href="#lenovo-thinkpad"><i class="fas fa-laptop"></i> 2.2.2.2 Lenovo Thinkpad X13s</a>
-                                <a href="#raspberry-pi"><i class="fas fa-microchip"></i> 2.2.2.3 Raspberry Pi - Coming Soon</a>
+                                <a href="../doc/page/main010.html"><i class="fab fa-apple"></i> 2.2.2.1 Apple Silicon</a>
+                                <a href="../doc/page/main011.html"><i class="fas fa-laptop"></i> 2.2.2.2 Lenovo Thinkpad X13s</a>
+                                <a href="../doc/page/main012.html"><i class="fas fa-microchip"></i> 2.2.2.3 Raspberry Pi - Coming Soon</a>
                             </div>
                         </div>
-                        <a href="#musl"><i class="fas fa-cube"></i> 2.3 Musl</a>
+                        <a href="../doc/page/main013.html"><i class="fas fa-cube"></i> 2.3 Musl</a>
                     </div>
                 </li>
                 <li>
                     <div class="nav-toggle" id="configuration-toggle">
-                        <a href="#configuration"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
-                        <i class="fas fa-chevron-right"></i>
+                        <a href="../doc/page/main014.html"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
                     </div>
                     <div class="nested-nav" id="configuration-nav">
-                        <a href="#firmware"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
-                        <a href="#kernel"><i class="fas fa-server"></i> 3.2 Kernel</a>
-                        <a href="#date-time"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
+                        <a href="../doc/page/main015.html"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
+                        <a href="../doc/page/main016.html"><i class="fas fa-server"></i> 3.2 Kernel</a>
+                        <a href="../doc/page/main017.html"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
                         <div class="nav-toggle" id="x11-toggle">
-                            <a href="#x11"><i class="fas fa-desktop"></i> 3.4 X11</a>
-                            <i class="fas fa-chevron-right"></i>
+                            <a href="../doc/page/main018.html"><i class="fas fa-desktop"></i> 3.4 X11</a>
                         </div>
                         <div class="nested-nav" id="x11-nav">
-                            <a href="#xfce4"><i class="fas fa-window-maximize"></i> 3.4.1 XFCE4</a>
-                            <a href="#bspwm"><i class="fas fa-th"></i> 3.4.2 BSPWM</a>
+                            <a href="../doc/page/main019.html"><i class="fas fa-window-maximize"></i> 3.4.1 XFCE4</a>
+                            <a href="../doc/page/main020.html"><i class="fas fa-th"></i> 3.4.2 BSPWM</a>
                         </div>
                         <div class="nav-toggle" id="wayland-toggle">
-                            <a href="#wayland"><i class="fas fa-desktop"></i> 3.5 Wayland</a>
-                            <i class="fas fa-chevron-right"></i>
+                            <a href="../doc/page/main021.html"><i class="fas fa-desktop"></i> 3.5 Wayland</a>
                         </div>
                         <div class="nested-nav" id="wayland-nav">
-                            <a href="#kde"><i class="fas fa-desktop"></i> 3.5.1 KDE</a>
-                            <a href="#river"><i class="fas fa-water"></i> 3.5.2 River</a>
+                            <a href="../doc/page/main022.html"><i class="fas fa-desktop"></i> 3.5.1 KDE</a>
+                            <a href="../doc/page/main023.html"><i class="fas fa-water"></i> 3.5.2 River</a>
                         </div>
                         <div class="nav-toggle" id="runit-toggle">
-                            <a href="#runit"><i class="fas fa-play-circle"></i> 3.6 Runit</a>
-                            <i class="fas fa-chevron-right"></i>
+                            <a href="../doc/page/main024.html"><i class="fas fa-play-circle"></i> 3.6 Runit</a>
                         </div>
                         <div class="nested-nav" id="runit-nav">
-                            <a href="#runit-usage"><i class="fas fa-book"></i> 3.6.1 How To Use Runit</a>
-                            <a href="#runit-build"><i class="fas fa-tools"></i> 3.6.2 How To Build Service</a>
-                            <a href="#runit-troubleshooting"><i class="fas fa-wrench"></i> 3.6.3 Troubleshooting</a>
+                            <a href="../doc/page/main025.html"><i class="fas fa-book"></i> 3.6.1 How To Use Runit</a>
+                            <a href="../doc/page/main026.html"><i class="fas fa-tools"></i> 3.6.2 How To Build Service</a>
+                            <a href="../doc/page/main027.html"><i class="fas fa-wrench"></i> 3.6.3 Troubleshooting</a>
                         </div>
-                        <a href="#systemd"><i class="fas fa-cogs"></i> 3.7 SystemD</a>
+                        <a href="../doc/page/main028.html"><i class="fas fa-cogs"></i> 3.7 SystemD</a>
                     </div>
                 </li>
                 <li>
                     <div class="nav-toggle" id="xbps-toggle">
-                        <a href="#xbps"><i class="fas fa-box"></i> 4. XBPS Package Manager</a>
-                        <i class="fas fa-chevron-right"></i>
+                        <a href="../doc/page/main029.html"><i class="fas fa-box"></i> 4. XBPS Package Manager</a>
                     </div>
                     <div class="nested-nav" id="xbps-nav">
-                        <a href="#xbps-advanced"><i class="fas fa-cogs"></i> 4.1 Advanced Usage</a>
+                        <a href="../doc/page/main030.html"><i class="fas fa-cogs"></i> 4.1 Advanced Usage</a>
                         <div class="nav-toggle" id="mirrors-toggle">
-                            <a href="#mirrors"><i class="fas fa-clone"></i> 4.2 Mirrors</a>
-                            <i class="fas fa-chevron-right"></i>
+                            <a href="../doc/page/main031.html"><i class="fas fa-clone"></i> 4.2 Mirrors</a>
                         </div>
                         <div class="nested-nav" id="mirrors-nav">
-                            <a href="#changing-mirrors"><i class="fas fa-exchange-alt"></i> 4.2.1 Changing Mirrors</a>
-                            <a href="#tor-mirror"><i class="fas fa-user-secret"></i> 4.2.2 Using Tor Mirror</a>
+                            <a href="../doc/page/main032.html"><i class="fas fa-exchange-alt"></i> 4.2.1 Changing Mirrors</a>
+                            <a href="../doc/page/main033.html"><i class="fas fa-user-secret"></i> 4.2.2 Using Tor Mirror</a>
                         </div>
-                        <a href="#xbps-troubleshooting"><i class="fas fa-wrench"></i> 4.3 Troubleshooting XBPS</a>
+                        <a href="../doc/page/main034.html"><i class="fas fa-wrench"></i> 4.3 Troubleshooting XBPS</a>
                     </div>
                 </li>
             </ul>
@@ -567,421 +125,20 @@
     <main class="container">
         <section id="about" class="content-section">
             <h1>Tentang T4n OS</h1>
-            <p>T4n OS adalah distribusi Linux yang ringan dan cepat, berbasis Void Linux dengan fokus pada stabilitas, keamanan, dan kemudahan penggunaan. T4n OS dirancang untuk pengguna yang menginginkan sistem operasi yang responsif dengan kontrol penuh atas lingkungan mereka.</p>
-            
+            <p>T4n OS adalah sistem operasi Linux berbasis Void Linux, dirancang untuk menghadirkan kekuatan level power user dengan kenyamanan untuk general user, tanpa mengorbankan kendali pengguna atas sistem.</p>
+
+            <p>Berbeda dengan distro lain yang mengambil keputusan atas nama user,
+T4n OS memberi default yang masuk akal, tapi keputusan akhir tetap di tangan user.</p>   
+
+            <p>T4n OS adalah Project Mandiri(<a href="https://github.com/gh0st4n/T4n-OS-Live">Gh0sT4n</a> -  Bocah Atjeh/Siswa Darussa'adah Cot Tarom Baroh - SMKN 5 Takengon</p>
+         
             <div class="alert">
-                <strong>Catatan:</strong> T4n OS menggunakan manajer paket XBPS (X Binary Package System) yang sangat cepat dan efisien.
-            </div>
-
-            <h2 id="history">Sejarah</h2>
-            <p>T4n OS dimulai sebagai proyek pribadi untuk menciptakan distribusi Linux yang menggabungkan kestabilan Void Linux dengan peningkatan kinerja dan pengalaman pengguna yang lebih baik. Seiring waktu, proyek ini berkembang menjadi distribusi lengkap dengan komunitas yang aktif dan dukungan untuk berbagai perangkat keras.</p>
-            
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3><i class="fas fa-rocket"></i> Performa Tinggi</h3>
-                    <p>T4n OS dioptimalkan untuk performa tinggi dengan boot time yang cepat dan penggunaan sumber daya yang minimal.</p>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-sync-alt"></i> Rolling Release</h3>
-                    <p>Dengan model rolling release, Anda selalu mendapatkan pembaruan terbaru tanpa perlu melakukan upgrade versi mayor.</p>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fas fa-user-shield"></i> Keamanan</h3>
-                    <p>T4n OS memiliki fokus pada keamanan dengan pembaruan keamanan yang cepat dan default yang aman.</p>
-                </div>
+                <strong>Catatan:</strong>
+                <p> T4n OS Berbasis Void Linux</p>
+                <p> T4n OS menggunakan manajer paket XBPS (X Binary Package System) yang sangat cepat dan efisien.</p>
+                <p> Dokumentasi ini Hasil Kopian dari https://docs.voidlinux.org/</p>
             </div>
         </section>
-
-        <section id="installation" class="content-section">
-            <h2>Instalasi T4n OS</h2>
-            <p>Berikut adalah panduan langkah demi langkah untuk menginstal T4n OS pada sistem Anda:</p>
-            
-            <h3 id="live-installer">Live Installer</h3>
-            <p>Live Installer T4n OS menyediakan cara termudah untuk menginstal sistem operasi ini pada komputer Anda.</p>
-            
-            <h4 id="prepare-media">2.1.1 Prepare Installation Media</h4>
-            <p>Untuk memulai instalasi, Anda perlu membuat media instalasi yang dapat di-boot:</p>
-            <ol>
-                <li>Unduh ISO T4n OS dari situs resmi</li>
-                <li>Buat bootable USB dengan menggunakan alat seperti:
-                    <ul>
-                        <li>Rufus (Windows)</li>
-                        <li>dd (Linux/macOS)</li>
-                        <li>Etcher (Cross-platform)</li>
-                    </ul>
-                </li>
-                <li>Verifikasi integritas ISO dengan checksum yang disediakan</li>
-            </ol>
-            
-            <h4 id="partition-notes">2.1.2 Partition Notes</h4>
-            <p>Partisi yang direkomendasikan untuk T4n OS:</p>
-            <ul>
-                <li>/boot/efi (512MB, FAT32, untuk sistem UEFI)</li>
-                <li>/ (minimal 15GB, ext4)</li>
-                <li>swap (ukuran sama dengan RAM atau 2GB, whichever is larger)</li>
-                <li>/home (sisa ruang, ext4, opsional)</li>
-            </ul>
-            
-            <h4 id="installation-guide">2.1.3 Installation Guide</h4>
-            <ol>
-                <li>Boot dari USB yang telah Anda siapkan</li>
-                <li>Pilih "Start T4n OS" dari menu boot</li>
-                <li>Buka terminal dan jalankan perintah berikut untuk memulai instalasi:</li>
-            </ol>
-            
-            <pre><code>sudo t4n-installer</code></pre>
-            
-            <ol start="4">
-                <li>Ikuti panduan di layar untuk mengkonfigurasi:
-                    <ul>
-                        <li>Bahasa dan zona waktu</li>
-                        <li>Partisi disk</li>
-                        <li>Pengguna dan password</li>
-                        <li>Lingkungan desktop (opsional)</li>
-                    </ul>
-                </li>
-                <li>Tunggu hingga proses instalasi selesai</li>
-                <li>Restart sistem dan lepaskan USB</li>
-            </ol>
-
-            <h3 id="advanced-installation">Advanced Installation Guide</h3>
-            
-            <h4 id="chroot-installation">2.2.1 Installation via chroot (x86/x86_64/aarch64)</h4>
-            <p>Untuk instalasi lanjutan melalui chroot:</p>
-            <pre><code># Mount partisi target
-sudo mount /dev/sdXn /mnt
-
-# Install base system
-sudo xbps-install -S -R https://repo-default.voidlinux.org/current -r /mnt base-system
-
-# Chroot ke sistem baru
-sudo xchroot /mnt /bin/bash
-
-# Konfigurasi sistem (hostname, fstab, dll)
-# Instal kernel dan bootloader
-# Konfigurasi pengguna</code></pre>
-            
-            <h4 id="arm-devices">2.2.2 ARM Devices</h4>
-            <p>T4n OS juga mendukung berbagai perangkat ARM:</p>
-            
-            <h5 id="apple-silicon">2.2.2.1 Apple Silicon</h5>
-            <p>Untuk instalasi pada perangkat Apple Silicon (M1/M2):</p>
-            <pre><code># Unduh image khusus Apple Silicon
-# Ikuti panduan di wiki T4n OS untuk proses instalasi</code></pre>
-            
-            <h5 id="lenovo-thinkpad">2.2.2.2 Lenovo Thinkpad X13s</h5>
-            <p>Untuk instalasi pada Lenovo Thinkpad X13s:</p>
-            <pre><code># Gunakan image khusus untuk Snapdragon X55
-# Ikuti panduan konfigurasi khusus untuk perangkat ini</code></pre>
-            
-            <h5 id="raspberry-pi">2.2.2.3 Raspberry Pi - Coming Soon</h5>
-            <p>Dukungan untuk Raspberry Pi sedang dalam pengembangan dan akan segera tersedia.</p>
-            
-            <h3 id="musl">2.3 Musl</h3>
-            <p>T4n OS juga tersedia dengan libc Musl sebagai alternatif dari glibc:</p>
-            <ul>
-                <li>Unduh image khusus Musl dari situs resmi</li>
-                <li>Ikuti proses instalasi standar</li>
-                <li>Perhatikan bahwa beberapa aplikasi mungkin tidak kompatibel dengan Musl</li>
-            </ul>
-            
-            <div class="alert warning">
-                <strong>Peringatan:</strong> Pastikan Anda memilih partisi yang benar saat menginstal untuk menghindari kehilangan data.
-            </div>
-        </section>
-
-        <section id="configuration" class="content-section">
-            <h2>Konfigurasi Sistem</h2>
-            
-            <h3 id="firmware">3.1 Firmware</h3>
-            <p>Untuk mengelola firmware pada T4n OS:</p>
-            <pre><code># Instal firmware tambahan
-sudo xbps-install linux-firmware
-
-# Untuk perangkat WiFi khusus
-sudo xbps-install linux-firmware-intel
-sudo xbps-install linux-firmware-nvidia</code></pre>
-            
-            <h3 id="kernel">3.2 Kernel</h3>
-            <p>T4n OS mendukung beberapa kernel:</p>
-            <pre><code># Kernel default (LTS)
-sudo xbps-install linux
-
-# Kernel terbaru
-sudo xbps-install linux-current
-
-# Kernel dengan patch khusus
-sudo xbps-install linux-xanmod</code></pre>
-            
-            <h3 id="date-time">3.3 Date and Time</h3>
-            <p>Untuk mengkonfigurasi tanggal dan waktu:</p>
-            <pre><code># Set zona waktu
-sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-
-# Sinkronisasi waktu dengan NTP
-sudo xbps-install chrony
-sudo ln -s /etc/sv/chronyd /var/service/
-sudo sv up chronyd</code></pre>
-            
-            <h3 id="x11">3.4 X11</h3>
-            <p>X11 adalah sistem jendela tradisional untuk Linux:</p>
-            
-            <h4 id="xfce4">3.4.1 XFCE4</h4>
-            <p>Untuk menginstal XFCE4:</p>
-            <pre><code>sudo xbps-install xfce4
-sudo xbps-install xfce4-terminal
-sudo xbps-install lightdm lightdm-gtk3-greeter
-sudo ln -s /etc/sv/lightdm /var/service/</code></pre>
-            
-            <h4 id="bspwm">3.4.2 BSPWM</h4>
-            <p>Untuk menginstal BSPWM:</p>
-            <pre><code>sudo xbps-install bspwm sxhkd
-# Konfigurasi di ~/.config/bspwm/ dan ~/.config/sxhkd/</code></pre>
-            
-            <h3 id="wayland">3.5 Wayland</h3>
-            <p>Wayland adalah pengganti modern untuk X11:</p>
-            
-            <h4 id="kde">3.5.1 KDE</h4>
-            <p>Untuk menginstal KDE Plasma dengan Wayland:</p>
-            <pre><code>sudo xbps-install kde5
-sudo xbps-install sddm
-sudo ln -s /etc/sv/sddm /var/service/
-# Pilih session "Plasma (Wayland)" di login manager</code></pre>
-            
-            <h4 id="river">3.5.2 River</h4>
-            <p>Untuk menginstal River, tiling Wayland compositor:</p>
-            <pre><code>sudo xbps-install river
-# Konfigurasi di ~/.config/river/init</code></pre>
-            
-            <h3 id="runit">3.6 Runit</h3>
-            <p>Runit adalah init system default di T4n OS:</p>
-            
-            <h4 id="runit-usage">3.6.1 How To Use Runit</h4>
-            <pre><code># Melihat layanan yang aktif
-sudo sv status /var/service/*
-
-# Mengaktifkan layanan
-sudo ln -s /etc/sv/nama_layanan /var/service/
-
-# Menonaktifkan layanan
-sudo rm /var/service/nama_layanan</code></pre>
-            
-            <h4 id="runit-build">3.6.2 How To Build Service</h4>
-            <p>Struktur direktori layanan runit:</p>
-            <pre><code>/etc/sv/nama_layanan/
-├── run          # Script utama untuk menjalankan layanan
-├── finish       # Script yang dijalankan saat layanan berhenti
-└── log/         # Direktori untuk logging (opsional)
-    └── run      # Script untuk logging</code></pre>
-            
-            <h4 id="runit-troubleshooting">3.6.3 Troubleshooting</h4>
-            <p>Untuk troubleshooting layanan runit:</p>
-            <pre><code># Melihat log layanan
-sudo sv log nama_layanan
-
-# Restart layanan
-sudo sv restart nama_layanan
-
-# Memeriksa status detail
-sudo sv status nama_layanan</code></pre>
-            
-            <h3 id="systemd">3.7 SystemD</h3>
-            <p>Bagi pengguna yang lebih familiar dengan systemd, T4n OS juga menyediakan varian dengan systemd:</p>
-            <pre><code># Menginstal systemd
-sudo xbps-install systemd
-
-# Mengganti dari runit ke systemd (diperlukan instalasi ulang)</code></pre>
-        </section>
-
-        <section id="xbps" class="content-section">
-            <h2>XBPS Package Manager</h2>
-            <p>XBPS (X Binary Package System) adalah manajer paket yang cepat dan efisien yang digunakan oleh T4n OS.</p>
-            
-            <h3 id="xbps-advanced">4.1 Advanced Usage</h3>
-            <p>Penggunaan lanjutan XBPS:</p>
-            <pre><code># Mencari paket dengan deskripsi
-xbps-query -Rs "deskripsi paket"
-
-# Melihat dependensi paket
-xbps-query -Rd nama_paket
-
-# Menginstal paket dari file lokal
-xbps-install -y /path/to/package.xbps
-
-# Mengunci versi paket
-xbps-pkgdb -m hold nama_paket
-
-# Melepaskan kunci paket
-xbps-pkgdb -m unhold nama_paket</code></pre>
-            
-            <h3 id="mirrors">4.2 Mirrors</h3>
-            <p>Mirror adalah server yang menyimpan repositori paket T4n OS.</p>
-            
-            <h4 id="changing-mirrors">4.2.1 Changing Mirrors</h4>
-            <p>Untuk mengganti mirror:</p>
-            <pre><code># Edit konfigurasi mirror
-sudo nano /etc/xbps.d/00-repository-main.conf
-
-# Contoh konfigurasi
-repository=https://mirror.voidlinux.org/current
-repository=https://repo-default.voidlinux.org/current</code></pre>
-            
-            <h4 id="tor-mirror">4.2.2 Using Tor Mirror</h4>
-            <p>Untuk menggunakan mirror melalui Tor:</p>
-            <pre><code># Instal tor
-sudo xbps-install tor
-
-# Konfigurasi XBPS untuk menggunakan Tor
-repository=http://tor-mirror.voidlinux.org/current</code></pre>
-            
-            <h3 id="xbps-troubleshooting">4.3 Troubleshooting XBPS</h3>
-            <p>Memecahkan masalah umum dengan XBPS:</p>
-            <pre><code># Memperbaiki database paket yang rusak
-sudo xbps-install -Sf
-
-# Membersihkan cache
-sudo xbps-remove -O
-
-# Memeriksa integritas paket
-xbps-query -C
-
-# Mengatasi konflik paket
-sudo xbps-install -f nama_paket_yang_bermasalah</code></pre>
-            
-            <div class="alert">
-                <strong>Tip:</strong> Selalu perbarui indeks paket sebelum menginstal atau memperbarui paket dengan <code>sudo xbps-install -S</code>.
-            </div>
-        </section>
-    </main>
-
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const htmlElement = document.documentElement;
-        
-        // Check for saved theme preference or default to light
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        htmlElement.setAttribute('data-theme', currentTheme);
-        
-        if (currentTheme === 'dark') {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            const theme = htmlElement.getAttribute('data-theme');
-            const newTheme = theme === 'dark' ? 'light' : 'dark';
-            
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            if (newTheme === 'dark') {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        });
-        
-        // Sidebar Toggle
-        const sidebarToggle = document.getElementById('sidebar-toggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
-        
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-        
-        // Active Navigation Link
-        const navLinks = document.querySelectorAll('.sidebar-nav a');
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                navLinks.forEach(item => item.classList.remove('active'));
-                link.classList.add('active');
-                
-                // Close sidebar on mobile after clicking a link
-                if (window.innerWidth <= 1199) {
-                    sidebar.classList.remove('active');
-                    overlay.classList.remove('active');
-                }
-            });
-        });
-        
-        // Smooth Scrolling for Navigation Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Highlight Active Section on Scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('.content-section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Copy Code Functionality
-        document.querySelectorAll('pre code').forEach(block => {
-            const button = document.createElement('button');
-            button.className = 'copy-button';
-            button.innerHTML = '<i class="fas fa-copy"></i>';
-            button.style.position = 'absolute';
-            button.style.top = '5px';
-            button.style.right = '5px';
-            button.style.background = 'rgba(100, 255, 218, 0.2)';
-            button.style.border = 'none';
-            button.style.borderRadius = '4px';
-            button.style.padding = '5px';
-            button.style.cursor = 'pointer';
-            button.style.color = 'var(--primary-color)';
-            
-            const pre = block.parentElement;
-            pre.style.position = 'relative';
-            pre.appendChild(button);
-            
-            button.addEventListener('click', () => {
-                navigator.clipboard.writeText(block.textContent);
-                button.innerHTML = '<i class="fas fa-check"></i>';
-                setTimeout(() => {
-                    button.innerHTML = '<i class="fas fa-copy"></i>';
-                }, 2000);
-            });
-        });
-    </script>
+    <script src="assets/main.js"></script>
 </body>
 </html>

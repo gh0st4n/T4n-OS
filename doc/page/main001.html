@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi T4n OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-terminal"></i>
+            <span>T4n OS Documentation</span>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </header>
+
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>T4n OS</h2>
+            <p>Based on Void Linux</p>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <div class="nav-toggle" id="about-toggle">
+                        <a href="../index.html"><i class="fas fa-info-circle"></i> 1. About</a>
+                    </div>
+                    <div class="nested-nav" id="about-nav">
+                        <a href="#"><i class="fas fa-history"></i> 1.1 History</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="installation-toggle">
+                        <a href="../page/main002.html"><i class="fas fa-download"></i> 2. Installation</a>
+                    </div>
+                    <div class="nested-nav" id="installation-nav">
+                        <div class="nav-toggle" id="live-installer-toggle">
+                            <a href="../page/main003.html"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
+                        </div>
+                        <div class="nested-nav" id="live-installer-nav">
+                            <a href="../page/main004.html"><i class="fas fa-hdd"></i> 2.1.1 Prepare Installation Media</a>
+                            <a href="../page/main005.html"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
+                            <a href="../page/main006.html"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
+                        </div>
+                        <div class="nav-toggle" id="advanced-installation-toggle">
+                            <a href="../page/main007.html"><i class="fas fa-cogs"></i> 2.2 Advanced Installation Guide</a>
+                        </div>
+                        <div class="nested-nav" id="advanced-installation-nav">
+                            <a href="../page/main008.html"><i class="fas fa-terminal"></i> 2.2.1 Installation via chroot (x86/x86_64/aarch64)</a>
+                            <div class="nav-toggle" id="arm-devices-toggle">
+                                <a href="../page/main009.html"><i class="fas fa-microchip"></i> 2.2.2 ARM Devices</a>
+                            </div>
+                            <div class="nested-nav" id="arm-devices-nav">
+                                <a href="../page/main010.html"><i class="fab fa-apple"></i> 2.2.2.1 Apple Silicon</a>
+                                <a href="../page/main011.html"><i class="fas fa-laptop"></i> 2.2.2.2 Lenovo Thinkpad X13s</a>
+                                <a href="../page/main012.html"><i class="fas fa-microchip"></i> 2.2.2.3 Raspberry Pi - Coming Soon</a>
+                            </div>
+                        </div>
+                        <a href="../page/main013.html"><i class="fas fa-cube"></i> 2.3 Musl</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="configuration-toggle">
+                        <a href="../page/main014.html"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
+                    </div>
+                    <div class="nested-nav" id="configuration-nav">
+                        <a href="../page/main015.html"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
+                        <a href="../page/main016.html"><i class="fas fa-server"></i> 3.2 Kernel</a>
+                        <a href="../page/main017.html"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main018.html"><i class="fas fa-desktop"></i> 3.4 X11</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main019.html"><i class="fas fa-window-maximize"></i> 3.4.1 XFCE4</a>
+                            <a href="../page/main020.html"><i class="fas fa-th"></i> 3.4.2 BSPWM</a>
+                        </div>
+                        <div class="nav-toggle" id="wayland-toggle">
+                            <a href="../page/main021.html"><i class="fas fa-desktop"></i> 3.5 Wayland</a>
+                        </div>
+                        <div class="nested-nav" id="wayland-nav">
+                            <a href="../page/main022.html"><i class="fas fa-desktop"></i> 3.5.1 KDE</a>
+                            <a href="../page/main023.html"><i class="fas fa-water"></i> 3.5.2 River</a>
+                        </div>
+                        <div class="nav-toggle" id="runit-toggle">
+                            <a href="../page/main024.html"><i class="fas fa-play-circle"></i> 3.6 Runit</a>
+                        </div>
+                        <div class="nested-nav" id="runit-nav">
+                            <a href="../page/main025.html"><i class="fas fa-book"></i> 3.6.1 How To Use Runit</a>
+                            <a href="../page/main026.html"><i class="fas fa-tools"></i> 3.6.2 How To Build Service</a>
+                            <a href="../page/main027.html"><i class="fas fa-wrench"></i> 3.6.3 Troubleshooting</a>
+                        </div>
+                        <a href="../page/main028.html"><i class="fas fa-cogs"></i> 3.7 SystemD</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="xbps-toggle">
+                        <a href="../page/main029.html"><i class="fas fa-box"></i> 4. XBPS Package Manager</a>
+                    </div>
+                    <div class="nested-nav" id="xbps-nav">
+                        <a href="../page/main030.html"><i class="fas fa-cogs"></i> 4.1 Advanced Usage</a>
+                        <div class="nav-toggle" id="mirrors-toggle">
+                            <a href="../page/main031.html"><i class="fas fa-clone"></i> 4.2 Mirrors</a>
+                        </div>
+                        <div class="nested-nav" id="mirrors-nav">
+                            <a href="../page/main032.html"><i class="fas fa-exchange-alt"></i> 4.2.1 Changing Mirrors</a>
+                            <a href="../page/main033.html"><i class="fas fa-user-secret"></i> 4.2.2 Using Tor Mirror</a>
+                        </div>
+                        <a href="../page/main034.html"><i class="fas fa-wrench"></i> 4.3 Troubleshooting XBPS</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="container">
+        <section id="about" class="content-section">
+            <h1>History T4n OS</h1>
+            <h3>Awal Mula</h3>
+            <p><span style="color: gray;">T4n OS</span> lahir dari kebutuhan sederhana tapi nyata:
+Void Linux itu cepat, bersih, dan minimal.</p>
+
+            <h3>Masalah Void Linux</h3>
+            <p>Beberapa masalah utama saat menggunakan Void Linux:</p>
+            <ul style="list-style-type: disc;">
+                <li>Banyak Software Tida Tersedia di repo Official</li>
+                <li><span style="color: blue;"><a href="https://github.com/void-linux/void-packages">xbps-src</a></span> kuat tapi ribet untuk penggunaan harian</li>
+                <li>Tidak ada ekosistem seperti AUR</li>
+                <li>Runit powerful, tapi setup default kurang fleksibel untuk berbagai use-case</li>
+            </ul>
+
+            <h3>Runit & Fleksibilitas Init</h3>
+            <p>Void identik dengan runit.</p>
+            <p>T4n OS memilih tidak memaksa.</p>
+            <ul style="list-style-type: disc;">
+                <li>runit → default</li>
+                <li>systemd → tetap opsi, jika user mau</li>
+            </ul>
+
+            <p>T4n OS fokus ke :</p>
+            <ul style="list-style-type: disc;">
+                <li>Struktur service jelas</li>
+                <li>Mudah dimodifikasi</li>
+                <li>Desktop(Utama) dan Server(Coming Soon)</li>
+            </ul>
+
+            <p>Status Saat Ini</p>
+            <ul style="list-style-type: disc;">
+                <li>Eksperimental</li>
+                <li>Berkembang Perlahan</li>
+                <li>Fokus ke kualitas & kontrol</li>
+            </ul>
+
+            <div class="alert">
+                <strong>Penutup:</strong> T4n OS adalah OS Proyek Mandiri & Gabut.
+            </div>
+        </section>
+    <script src="../assets/main.js"></script>
+</body>
+</html>

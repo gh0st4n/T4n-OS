@@ -41,11 +41,11 @@
                 </li>
                 <li>
                     <div class="nav-toggle" id="installation-toggle">
-                        <a href="#"><i class="fas fa-download"></i> 2. Installation</a>
+                        <a href="../page/main002.html"><i class="fas fa-download"></i> 2. Installation</a>
                     </div>
                     <div class="nested-nav" id="installation-nav">
                         <div class="nav-toggle" id="live-installer-toggle">
-                            <a href="../page/main003.html"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
+                            <a href="#"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
                         </div>
                         <div class="nested-nav" id="live-installer-nav">
                             <a href="../page/main004.html"><i class="fas fa-hdd"></i> 2.1.1 Prepare Installation Media</a>
@@ -124,44 +124,70 @@
 
     <main class="container">
         <section id="about" class="content-section">
-            <h1>Instalasi</h1>
-            <p>Bagian ini berisi informasi umum tentang proses instalasi Void. Untuk panduan spesifik, lihat <a href="../page/main007.html">"Instalasi Lanjutan"</a> bagian.</p>
+            <h1>Live Installer</h1>
+            <h3>Installer Images</h3>
+            <p>T4n OS merilis enam jenis image: image base runit, image base systemd, image xfce4, image bspwm, image kde dan image riverwm. Untuk pemula Linux. Disarankan untuk mencoba salah satu image XFCE/KDE yang lebih lengkap fiturnya, tetapi lebih Pengguna tingkat lanjut mungkin sering kali lebih memilih untuk memulai dari image dasar untuk hanya menginstal hal-hal tertentu. paket yang mereka butuhkan.</p>
 
-            <h3>Persyaratan Sistem Dasar</h3>
-            <p>T4n OS dapat diinstal pada perangkat keras yang sangat minimalis, meskipun kami merekomendasikan Berikut adalah persyaratan minimum untuk sebagian besar instalasi: </p>
-            <table border="1">
-                <tr>
-                    <td>Arsitektur</td>
-                    <td>CPU</td>
-                    <td>RAM</td>
-                    <td>Penyimpanan/Storage...</td>
+            <h4>image base runit</h4> 
+            <p>Image base runit hanya menyediakan serangkaian paket minimal untuk menginstal Void yang dapat digunakan. sistem. Paket dasar ini hanya mencakup paket yang dibutuhkan untuk mengkonfigurasi mesin baru, Perbarui sistem, runit dan instal paket tambahan dari repositori.</p>
 
-                </tr>
-                <tr>
-                    <td>x86_64-glibc...</td>
-                    <td>x86_64...</td>
-                    <td>96MB...</td>
-                    <td>700 MB...</td>
-                </tr>
-                <tr>
-                    <td>x86_64-musl...</td>
-                    <td>x86_64...</td>
-                    <td>96MB...</td>
-                    <td>600 MB...</td>
-                </tr>
-            </table>
+            <h4>image base systemd</h4> 
+            <p>image base systemd hanya menyediakan serangkaian paket minimal untuk menginstal Void yang dapat digunakan. sistem. Paket dasar ini hanya mencakup paket yang dibutuhkan untuk mengkonfigurasi mesin baru, Perbarui sistem, systemd dan instal paket tambahan dari repositori.</p>
 
-            <p>Perlu diingat bahwa instalasi image XFCE/KDE membutuhkan lebih banyak sumber daya.</p>
+            <h4>image XFCE</h4> 
+            <p>Citra XFCE menyertakan lingkungan desktop lengkap, peramban web, dan fitur dasar. aplikasi yang dikonfigurasi untuk lingkungan tersebut. Satu-satunya perbedaan dari basis Gambar-gambar tersebut adalah paket dan layanan tambahan yang diinstal.</p>
+            <p>Perangkat lunak berikut disertakan: </p>
+            <ul style="list-style-type: disc;">
+                <li>Window Manager : xfwm4</li>
+                <li>File Manager : Thunar</li>
+                <li>Browser : Firefox</li>
+                <li>Terminal : xfce4-terminal</li>
+                <li>Plain Text Editor : mousepad</li>
+                <li>Image Viewer : Ristretto</li>
+                <li>Other : Bulk rename, Orage Globaltime, Orage Calendar, Task Manager, Parole Media Player, Audio Mixer, MIME type editor, Application finder</li>
+            </ul>
 
-            <p>Sebelum memasang T4n OS Musl, harap baca bagian <a href="../page/main013.html">"musl"</a> pada dokumen ini. Buku panduan ini, agar Anda mengetahui ketidakkompatibilitas perangkat lunak.</p>
+            <h4>image KDE</h4> 
+            <p>Citra KDE menyertakan lingkungan desktop lengkap, peramban web, dan fitur dasar. aplikasi yang dikonfigurasi untuk lingkungan tersebut. Satu-satunya perbedaan dari basis Gambar-gambar tersebut adalah paket dan layanan tambahan yang diinstal.</p>
+            <p>Perangkat lunak berikut disertakan: </p>
+            <ul style="list-style-type: disc;">
+                <li>Window Manager : KWin</li>
+                <li>File Manager : Dolphin</li>
+                <li>Browser : Firefox</li>
+                <li>Terminal : Konsole</li>
+                <li>Plain Text Editor : Kate</li>
+                <li>Image Viewer : Gwenview</li>
+                <li>Other : Wayland, XWayland</li>
+            </ul>
 
-            <p>Sangat disarankan untuk memiliki koneksi jaringan yang tersedia selama instalasi. untuk mengunduh pembaruan, tetapi ini tidak wajib. Citra ISO berisi instalasi. data tersimpan di disk dan dapat diinstal tanpa konektivitas jaringan.</p>
+            <h4>image BSPWM</h4> 
+            <p>Citra bspwm menyertakan pengelola window lengkap, peramban web, dan fitur dasar. aplikasi yang dikonfigurasi untuk lingkungan tersebut. Satu-satunya perbedaan dari basis Gambar-gambar tersebut adalah paket dan layanan tambahan yang diinstal.</p>
+            <p>Perangkat lunak berikut disertakan: </p>
+            <ul style="list-style-type: disc;">
+                <li>Window Manager : bspwm</li>
+                <li>File Manager : Thunar</li>
+                <li>Browser : Firefox</li>
+                <li>Terminal : xfce4-terminal/alacritty</li>
+                <li>Plain Text Editor : Vi/Vim/Nano/Neovim</li>
+                <li>Image Viewer : Feh</li>
+                <li>Other : Picom, Polybar, Rofi, Dunst, Pipewire & Wireplumber</li>
+            </ul>
 
-            <h3>Mengunduh Media Intalasi</h3>
-            <p>Gambar live terbaru dan tarball rootfs dapat diunduh dari sini.<a href="https://drive.google.com/drive/u/2/folders/1Ocg6Bilwax_r4zdpf58bkDpW09vZ7S6Z">Google Drive</a></p>
-
+            <h4>image RiverWM</h4> 
+            <p>Citra riverwn menyertakan pengelola window lengkap, peramban web, dan fitur dasar. aplikasi yang dikonfigurasi untuk lingkungan tersebut. Satu-satunya perbedaan dari basis Gambar-gambar tersebut adalah paket dan layanan tambahan yang diinstal.</p>
+            <p>Perangkat lunak berikut disertakan: </p>
+            <ul style="list-style-type: disc;">
+                <li>Window Manager : riverwm</li>
+                <li>File Manager : Ranger(CLI) / ?</li>
+                <li>Browser : Firefox</li>
+                <li>Terminal : xfce4-terminal/alacritty</li>
+                <li>Plain Text Editor : Vi/Vim/Nano/Neovim</li>
+                <li>Image Viewer : ?</li>
+                <li>Other : XWayland, Pipewire & Wireplumber</li>
+            </ul>
+         
             <div class="alert">
-                <strong>Catatan:</strong> Musl Coming Soon(Kemungkinan 2027)
+                <strong>Catatan:</strong> T4n OS Saat ini hanya Menyediakan Base-Runit ISO
             </div>
         </section>
     <script src="../assets/main.js"></script>

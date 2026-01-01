@@ -41,7 +41,7 @@
                 </li>
                 <li>
                     <div class="nav-toggle" id="installation-toggle">
-                        <a href="#"><i class="fas fa-download"></i> 2. Installation</a>
+                        <a href="../page/main002.html"><i class="fas fa-download"></i> 2. Installation</a>
                     </div>
                     <div class="nested-nav" id="installation-nav">
                         <div class="nav-toggle" id="live-installer-toggle">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="nested-nav" id="live-installer-nav">
                             <a href="../page/main004.html"><i class="fas fa-hdd"></i> 2.1.1 Prepare Installation Media</a>
-                            <a href="../page/main005.html"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
+                            <a href="#"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
                             <a href="../page/main006.html"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
                         </div>
                         <div class="nav-toggle" id="advanced-installation-toggle">
@@ -124,44 +124,59 @@
 
     <main class="container">
         <section id="about" class="content-section">
-            <h1>Instalasi</h1>
-            <p>Bagian ini berisi informasi umum tentang proses instalasi Void. Untuk panduan spesifik, lihat <a href="../page/main007.html">"Instalasi Lanjutan"</a> bagian.</p>
+            <h1>Partition Notes</h1>
+            <p>Pemartisian untuk distribusi Linux modern umumnya sangat sederhana, namun Pengenalan GPT dan booting UEFI memang membawa kompleksitas baru pada proses. Saat membuat tabel partisi baru, Anda akan memerlukan partisi untuk Sistem file root, beserta partisi swap dan mungkin partisi lain. atau dua untuk mempermudah proses booting, jika diperlukan. </p>
 
-            <h3>Persyaratan Sistem Dasar</h3>
-            <p>T4n OS dapat diinstal pada perangkat keras yang sangat minimalis, meskipun kami merekomendasikan Berikut adalah persyaratan minimum untuk sebagian besar instalasi: </p>
+            <p>Perhatikan bahwa jika disk sudah diinisialisasi, bagian atas cfdisk Layar akan menampilkan tata letak partisi yang sudah ada: Label: dosuntuk MBR skema, Label: gptuntuk skema GPT. Jika Anda hanya ingin menghapus partisi. Sebelum memulai penginstal, gunakan tabel berikut: wipefs(8)Jika tidak, Anda bisa menjalankan. cfdisk(8)secara manual dengan -zopsi untuk memulai dengan disk yang belum diinisialisasi tata letak; cfdiskakan meminta Anda untuk memilih jenis label sebelum melanjutkan ke layar utama.</p>
+
+            <p>Bagian-bagian berikut akan menjelaskan secara rinci opsi-opsi untuk konfigurasi partisi. </p>
+
+            <h3>Catatan sistem BIOS </h3>
+            <p>Disarankan untuk membuat tabel partisi MBR jika Anda menggunakan BIOS. Sistem boot. Ini akan membatasi jumlah partisi yang dapat Anda buat menjadi empat. </p>
+            <p>Dimungkinkan untuk menggunakan tabel partisi GPT pada sistem BIOS, tetapi GRUB akan Membutuhkan partisi khusus agar dapat melakukan booting dengan benar. Partisi ini harus berada di... di awal disk Anda dan memiliki ukuran 1MB, dengan tipe BIOS boot(GUID 21686148-6449-6E6F-744E-656564454649). Jangan membuat sistem file apa pun di dalamnya. GRUB Kemudian seharusnya akan terinstal dengan sukses. </p>
+
+            <h3>Catatan sistem UEFI </h3>
+            <p>Pengguna UEFI disarankan untuk membuat tabel partisi GPT. Booting UEFI dengan GRUB juga memerlukan partisi khusus dengan tipe tertentu. EFI Systemdengan vfat sistem berkas terpasang di /boot/efiUkuran yang wajar untuk partisi ini bisa jadi... antara 200MB dan 1GB. Dengan pengaturan partisi ini selama live image. Setelah instalasi, installer seharusnya berhasil mengatur bootloader. secara otomatis. </p>
+
+            <h3>Swap Partition</h3>
+            <p>Partisi swap sebenarnya tidak wajib, tetapi direkomendasikan untuk sistem dengan konsumsi sumber daya yang rendah. RAM. Jika Anda ingin menggunakan hibernasi, Anda memerlukan partisi swap. Tabel berikut berisi rekomendasi untuk ukuran partisi swap. </p>
             <table border="1">
                 <tr>
-                    <td>Arsitektur</td>
-                    <td>CPU</td>
-                    <td>RAM</td>
-                    <td>Penyimpanan/Storage...</td>
+                    <td>RAM Sistem...</td>
+                    <td>Swap Ram Yang Direkomendasikan...</td>
+                    <td>Gunakan Swap Space jika menggunakan hibernasi...</td>
 
                 </tr>
                 <tr>
-                    <td>x86_64-glibc...</td>
-                    <td>x86_64...</td>
-                    <td>96MB...</td>
-                    <td>700 MB...</td>
+                    <td>< 2 GB</td>
+                    <td>2x jumlah RAM </td>
+                    <td>3 kali lipat jumlah RAM </td>
                 </tr>
                 <tr>
-                    <td>x86_64-musl...</td>
-                    <td>x86_64...</td>
-                    <td>96MB...</td>
-                    <td>600 MB...</td>
+                    <td>2-8 GB</td>
+                    <td>Sama dengan jumlah RAM</td>
+                    <td>2x jumlah RAM </td>
+                </tr>
+                <tr>
+                    <td>8-64 GB</td>
+                    <td>Minimal 4 GB</td>
+                    <td>1,5 kali jumlah RAM </td>
+                </tr>
+                <tr>
+                    <td>64 GB</td>
+                    <td>Minimal 4 GB</td>
+                    <td>Hibernasi tidak disarankan </td>
                 </tr>
             </table>
 
-            <p>Perlu diingat bahwa instalasi image XFCE/KDE membutuhkan lebih banyak sumber daya.</p>
+            <h3>Partisi boot (opsional) </h3>
+            <p>Pada sebagian besar sistem modern, terdapat panel terpisah. /boot partisi tidak lagi diperlukan untuk Pastikan booting dengan benar. Jika Anda memilih untuk menggunakannya, perhatikan bahwa T4n OS tidak menghapus yang lama. kernel setelah pembaruan secara default dan juga bahwa kernel cenderung meningkat ukurannya berbeda-beda di setiap versi baru, jadi rencanakan sesuai kebutuhan (misalnya, /bootdengan satu Linux 5.x x86_64kernel dan GRUB membutuhkan sekitar 60MB). </p>
 
-            <p>Sebelum memasang T4n OS Musl, harap baca bagian <a href="../page/main013.html">"musl"</a> pada dokumen ini. Buku panduan ini, agar Anda mengetahui ketidakkompatibilitas perangkat lunak.</p>
-
-            <p>Sangat disarankan untuk memiliki koneksi jaringan yang tersedia selama instalasi. untuk mengunduh pembaruan, tetapi ini tidak wajib. Citra ISO berisi instalasi. data tersimpan di disk dan dapat diinstal tanpa konektivitas jaringan.</p>
-
-            <h3>Mengunduh Media Intalasi</h3>
-            <p>Gambar live terbaru dan tarball rootfs dapat diunduh dari sini.<a href="https://drive.google.com/drive/u/2/folders/1Ocg6Bilwax_r4zdpf58bkDpW09vZ7S6Z">Google Drive</a></p>
+            <h3>Partisi Lainnya </h3>
+            <p>Tidak masalah untuk menginstal sistem Anda hanya dengan partisi root yang besar, tetapi Anda mungkin Buat partisi lain jika Anda mau. Salah satu tambahan yang bermanfaat adalah partisi terpisah. partisi untuk Anda /homedirektori. Dengan cara ini, jika Anda perlu menginstal ulang Void (atau (distribusi lain) Anda dapat menyimpan data dan file konfigurasi di direktori home Anda. direktori untuk sistem baru Anda. </p>
 
             <div class="alert">
-                <strong>Catatan:</strong> Musl Coming Soon(Kemungkinan 2027)
+                <strong>Catatan:</strong> Gh0sT4n : >_< :
             </div>
         </section>
     <script src="../assets/main.js"></script>
