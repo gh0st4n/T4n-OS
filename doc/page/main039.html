@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi T4n OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-terminal"></i>
+            <span>T4n OS Documentation</span>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </header>
+
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>T4n OS</h2>
+            <p>Based on Void Linux</p>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <div class="nav-toggle" id="about-toggle">
+                        <a href="../index.html"><i class="fas fa-info-circle"></i> 1. About</a>
+                    </div>
+                    <div class="nested-nav" id="about-nav">
+                        <a href="../page/main001.html"><i class="fas fa-history"></i> 1.1 History</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="installation-toggle">
+                        <a href="../page/main002.html"><i class="fas fa-download"></i> 2. Installation</a>
+                    </div>
+                    <div class="nested-nav" id="installation-nav">
+                        <div class="nav-toggle" id="live-installer-toggle">
+                            <a href="../page/main003.html"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
+                        </div>
+                        <div class="nested-nav" id="live-installer-nav">
+                            <a href="../page/main004.html"><i class="fas fa-hdd"></i> 2.1.1 Prepare Installation Media</a>
+                            <a href="../page/main005.html"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
+                            <a href="../page/main006.html"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
+                        </div>
+                        <div class="nav-toggle" id="advanced-installation-toggle">
+                            <a href="../page/main007.html"><i class="fas fa-cogs"></i> 2.2 Advanced Installation Guide</a>
+                        </div>
+                        <div class="nested-nav" id="advanced-installation-nav">
+                            <a href="../page/main008.html"><i class="fas fa-terminal"></i> 2.2.1 Installation via chroot (x86/x86_64/aarch64)</a>
+                            <a href="#"><i class="fas fa-hdd"></i> 2.2.2 Full Disk Encryption</a>
+                            <a href="../page/main039.html"><i class="fas fa-terminal"></i> 2.2.3 Root on ZFS</a>
+                            <div class="nav-toggle" id="arm-devices-toggle">
+                                <a href="../page/main009.html"><i class="fas fa-microchip"></i> 2.2.4 ARM Devices - Coming Soon</a>
+                            </div>
+                            <div class="nested-nav" id="arm-devices-nav">
+                                <a href="../page/main010.html"><i class="fab fa-apple"></i> 2.2.4.1 Apple Silicon - Coming Soon</a>
+                                <a href="../page/main011.html"><i class="fas fa-laptop"></i> 2.2.4.2 Lenovo Thinkpad X13s - Coming Soon</a>
+                                <a href="../page/main012.html"><i class="fas fa-microchip"></i> 2.2.4.3 Raspberry Pi - Coming Soon</a>
+                            </div>
+                        </div>
+                        </div>
+                        <a href="../page/main013.html"><i class="fas fa-cube"></i> 2.3 Musl - Coming Soon</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="configuration-toggle">
+                        <a href="../page/main014.html"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
+                    </div>
+                    <div class="nested-nav" id="configuration-nav">
+                        <a href="../page/main015.html"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main049.html"><i class="fa-solid fa-wifi"></i> 3.1.1 Locale & Translations</a>
+                        </div>
+                        <a href="../page/main016.html"><i class="fas fa-server"></i> 3.2 Kernel</a>
+                        <a href="../page/main017.html"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
+                        <a href="../page/main018.html"><i class="fa-solid fa-user"></i> 3.4 Users & Group</a>
+                        <a href="../page/main041.html"><i class="fa-solid fa-battery-full"></i> 3.5 Power Management</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main042.html"><i class="fa-solid fa-network-wired"></i> 3.6 Network</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main043.html"><i class="fa-solid fa-wifi"></i> 3.6.1 wpa_supplicant</a>
+                            <a href="../page/main044.html"><i class="fa-solid fa-wifi"></i> 3.6.2 NetworkManager</a>
+                            <a href="../page/main045.html"><i class="fa-solid fa-wifi"></i> 3.6.3 IWD</a>
+                            <a href="../page/main046.html"><i class="fa-solid fa-wifi"></i> 3.6.4 ConnMan</a>
+                            <a href="../page/main047.html"><i class="fa-solid fa-wifi"></i> 3.6.5 NetworkManager</a>
+                            <a href="../page/main048.html"><i class="fas fa-exchange-alt"></i> 3.6.6 Firewalls</a>
+                        </div>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main019.html"><i class="fas fa-desktop"></i> 3.7 X11</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main020.html"><i class="fas fa-window-maximize"></i> 3.7.1 XFCE4</a>
+                            <a href="../page/main021.html"><i class="fas fa-th"></i> 3.7.2 BSPWM</a>
+                        </div>
+                        <div class="nav-toggle" id="wayland-toggle">
+                            <a href="../page/main022.html"><i class="fas fa-desktop"></i> 3.8 Wayland - Coming Soon</a>
+                        </div>
+                        <div class="nested-nav" id="wayland-nav">
+                            <a href="../page/main023.html"><i class="fas fa-desktop"></i> 3.8.1 KDE - Coming Soon</a>
+                            <a href="../page/main024.html"><i class="fas fa-water"></i> 3.8.2 River - Coming Soon</a>
+                        </div>
+                        <div class="nav-toggle" id="runit-toggle">
+                            <a href="../page/main025.html"><i class="fas fa-play-circle"></i> 3.9 Runit</a>
+                        </div>
+                        <div class="nested-nav" id="runit-nav">
+                            <a href="../page/main026.html"><i class="fas fa-book"></i> 3.9.1 How To Use Runit</a>
+                            <a href="../page/main027.html"><i class="fas fa-tools"></i> 3.9.2 How To Build Service</a>
+                            <a href="../page/main028.html"><i class="fas fa-wrench"></i> 3.9.3 Troubleshooting</a>
+                        </div>
+                        <a href="../page/main029.html"><i class="fas fa-cogs"></i> 3.10 SystemD - Coming Soon</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="xbps-toggle">
+                        <a href="../page/main030.html"><i class="fas fa-box"></i> 4. XBPS Package Manager</a>
+                    </div>
+                    <div class="nested-nav" id="xbps-nav">
+                        <a href="../page/main031.html"><i class="fas fa-cogs"></i> 4.1 Advanced Usage</a>
+                        <div class="nav-toggle" id="mirrors-toggle">
+                            <a href="../page/main032.html"><i class="fas fa-clone"></i> 4.2 Repositories</a>
+                        </div>
+                        <div class="nested-nav" id="mirrors-nav">
+                            <a href="../page/main040.html"><i class="fas fa-exchange-alt"></i> 4.2.1 Mirrors</a>
+                            <a href="../page/main033.html"><i class="fas fa-exchange-alt"></i> 4.2.2 Changing Mirrors</a>
+                            <a href="../page/main034.html"><i class="fas fa-user-secret"></i> 4.2.3 Using Tor Mirror</a>
+                        </div>
+                     <div>
+                         <a href="../page/main035.html"><i class="fas fa-wrench"></i> 4.3 Troubleshooting XBPS</a>
+                     </div>
+                     <div class="nested-nav">
+                        <a href="../page/main036.html"><i class="fas fa-cogs"></i> 4.3.1 Common Issues</a>
+                        <a href="../page/main037.html"><i class="fas fa-cube"></i> 4.3.2 Static XBPS</a>
+                     </div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="container">
+        <section id="about" class="content-section">
+            <h1>Installing Void ona ZFS Root</h1>
+            <p>Karena penginstal Void tidak mendukung ZFS, maka perlu dilakukan instalasi melalui chroot. Selain beberapa catatan terkait dukungan bootloader dan initramfs, Menginstal Void pada sistem file root ZFS tidak jauh berbeda dari yang lain. instalasi lanjutan lainnya. <a href="https://docs.zfsbootmenu.org/en/v3.1.x/">ZFSBootMenu</a> adalah Bootloader yang dirancang dari awal untuk mendukung proses booting distribusi Linux. langsung dari pool ZFS. Namun, dimungkinkan juga untuk menggunakan metode tradisional. bootloader dengan root ZFS. </p>
+
+            <h2>Menu Boot ZFS </h2>
+            <p>Meskipun dapat dijalankan di atas berbagai distribusi Linux (dan dapat dioperasikan di atasnya), ZFSBootMenu secara resmi menganggap Void sebagai distribusi kelas satu. ZFSBootMenu mendukung enkripsi ZFS asli, menawarkan lingkungan pemulihan yang nyaman yang dapat digunakan untuk mengklonakan snapshot sebelumnya atau melakukan manipulasi tingkat lanjut di dalam lingkungan pra-boot, dan akan mendukung booting dari pool mana pun yang dapat diimpor. oleh driver ZFS modern. Dokumentasi ZFSBootMenu menawarkan, antara lain konten, beberapa langkah demi langkah panduan untuk Memasang sistem Void dari awal. UEFI memandu menjelaskan prosedur bootstrapping sistem Void untuk sistem modern. Untuk sistem BIOS lama, syslinux memandu memberikan instruksi yang sebanding</p>
+
+            <p>Buat satu partisi fisik pada disk menggunakan <a href="">cfdisk</a> , menandainya sebagai dapat di-boot. Untuk MBR Pada sistem ini, tata letak partisi seharusnya terlihat seperti berikut. </p>
+
+            <div class="alert">
+                <p># fdisk -l /dev/sda</p>
+                <p>Disk /dev/sda: 48 GiB, 51539607552 bytes, 100663296 sectors</p>
+                <p>Units: sectors of 1 * 512 = 512 bytes</p>
+                <p>Sector size (logical/physical): 512 bytes / 512 bytes</p>
+                <p>I/O size (minimum/optimal): 512 bytes / 512 bytes</p>
+                <p>Disklabel type: dos</p>
+                <p>Disk identifier: 0x4d532059</p>
+                <p></p>
+                <p>Device     Boot Start       End   Sectors Size Id Type</p>
+                /dev/sda1  *     2048 100663295 100661248  48G 83 Linux
+            </div>
+
+            <div class="alert">
+                <p># fdisk -l /dev/sda</p>
+                <p>Disk /dev/sda: 48 GiB, 51539607552 bytes, 100663296 sectors</p>
+                <p>Units: sectors of 1 * 512 = 512 bytes</p>
+                <p>Sector size (logical/physical): 512 bytes / 512 bytes</p>
+                <p>I/O size (minimum/optimal): 512 bytes / 512 bytes</p>
+                <p>Disklabel type: gpt</p>
+                <p>Disk identifier: EE4F2A1A-8E7F-48CA-B3D0-BD7A01F6D8A0</p>
+                <p></p>
+                <p>Device     Boot Start       End   Sectors Size Id Type</p>
+                <p>/dev/sda1    2048    264191    262144  128M EFI System</p>
+                /dev/sda2  264192 100663262 100399071 47.9G Linux filesystem
+            </div>
+
+            <h2>Konfigurasi volume terenkripsi </h2>
+            <p><a href="">Cryptsetup</a> secara default menggunakan LUKS2, namun GRUB Versi sebelum 2.06 hanya mendukung LUKS1. </p>
+            <div class="alert">
+                <p># cryptsetup luksFormat --type luks1 /dev/sda1</p>
+                <p></p>
+                <p>WARNING!</p>
+                <p>========</p>
+                <p>This will overwrite data on /dev/sda1 irrevocably.</p>
+                <p></p>
+                <p>Disk identifier: EE4F2A1A-8E7F-48CA-B3D0-BD7A01F6D8A0</p>
+                <p></p>
+                <p>Are you sure? (Type uppercase yes): YES</p>
+                <p>Enter passphrase:</p>
+                Verify passphrase:
+            </div>
+
+            <p>Setelah volume dibuat, volume tersebut perlu dibuka. Ganti <strong>voidvm</strong> dengan sebuah nama yang tepat. Sekali lagi, ini akan menjadi <strong>/dev/sda2</strong> pada sistem EFI. </p>
+            <div class="alert">
+                <p># cryptsetup luksOpen /dev/sda1 voidvm</p>
+                Enter passphrase for /dev/sda1:
+            </div>
+
+            <p>Setelah kontainer LUKS dibuka, buat grup volume LVM menggunakan kontainer tersebut. partisi.</p>
+            <div class="alert">
+                <p># vgcreate voidvm /dev/mapper/voidvm</p>
+                Volume group "voidvm" successfully created
+            </div>
+
+            <p>Sekarang seharusnya ada grup volume kosong bernama <strong>voidvm.</strong></p>
+
+            <p>Selanjutnya, volume logis perlu dibuat untuk grup volume. Untuk contoh ini, Saya memilih 10G untuk <strong>/</strong>, 2G untuk <strong>swap</strong>, dan akan menyerahkan sisanya kepada <strong>/home</strong>. </p>
+            <div class="alert">
+                <p># lvcreate --name root -L 10G voidvm</p>
+                <p>Logical volume "root" created.</p>
+                <p># lvcreate --name swap -L 2G voidvm</p>
+                <p>Logical volume "swap" created.</p>
+                <p># lvcreate --name home -L 100%FREE voidvm</p>
+                <p>Logical volume "home" created.</p>
+            </div>
+
+            <p>Selanjutnya, buat sistem file. Contoh di bawah ini menggunakan XFS sebagai sistem file pribadi. Preferensi penulis. Sistem file apa pun yang didukung oleh GRUB akan bekerja.</p>
+
+            <div class="alert">
+                <p># mkfs.xfs -L root /dev/voidvm/root</p>
+                <p>meta-data=/dev/voidvm/root       isize=512    agcount=4, agsize=655360 blks</p>
+                <p>...</p>
+                <p># mkfs.xfs -L home /dev/voidvm/home</p>
+                <p>meta-data=/dev/voidvm/home       isize=512    agcount=4, agsize=655360 blks</p>
+                <p>...</p>
+                <p># mkswap /dev/voidvm/swap</p>
+                <p>Setting up swapspace version 1, size = 2 GiB (2147479552 bytes)</p>
+                # swapon /dev/voidvm/swap
+            </div>
+
+
+            <h2>Instalasi Sistem</h2>
+            <p>Selanjutnya, siapkan chroot dan instal sistem dasar. </p>
+            <div class="alert">
+                <p># mount /dev/voidvm/root /mnt</p>
+                <p># mkdir -p /mnt/home</p>
+                # mount /dev/voidvm/home /mnt/home
+            </div>
+
+            <p>Pada sistem UEFI, partisi sistem EFI juga perlu dipasang (mounted). </p>
+
+            <div class="alert">
+                <p># mkfs.vfat /dev/sda1</p>
+                <p># mkdir -p /mnt/boot/efi</p>
+                # mount /dev/sda1 /mnt/boot/efi
+            </div>
+
+            <p>Salin kunci RSA dari media instalasi ke direktori root target: </p>
+
+            <div class="alert">
+                <p># mkdir -p /mnt/var/db/xbps/keys</p>
+                # cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
+            </div>
+
+            <p>Sebelum kita masuk ke chroot untuk menyelesaikan konfigurasi, kita melakukan instalasi sebenarnya terlebih dahulu. Jangan lupa menggunakan <a  href="">repositori yang sesuai URL</a> untuk jenis sistem yang ingin Anda instal. </p>
+            <div class="alert">
+                <p># xbps-install -Sy -R https://repo-default.voidlinux.org/current -r /mnt base-system lvm2 cryptsetup grub</p>
+                <p>[*] Updating `https://repo-default.voidlinux.org/current/x86_64-repodata' ...</p>
+                <p>x86_64-repodata: 1661KB [avg rate: 2257KB/s]</p>
+                <p>130 packages will be downloaded:</p>
+                ...
+            </div>
+
+            <p>Sistem UEFI akan memiliki pilihan paket yang sedikit berbeda. Instalasi Perintah untuk sistem UEFI adalah sebagai berikut. </p>
+
+            <div class="alert">
+                # xbps-install -Sy -R https://repo-default.voidlinux.org/current -r /mnt base-system cryptsetup grub-x86_64-efi lvm2
+            </div>
+
+            <h2>Konfigurasi</h2>
+            <h3>Konfigurasi Sistem Berkas </h3>
+            <p>File <a href="">fstab</a> dapat secara otomatis dihasilkan dari sistem file yang saat ini terpasang menggunakan <a href="">xgenfstab</a> (dari <strong>xtools</strong>). </p>
+            <div class="alert">
+                # xgenfstab /mnt > /mnt/etc/fstab
+            </div>
+
+            <h2>Memasuki Chroot</h2>
+            <p>Kita bisa memasuki chroot dengan <a href="">xchroot</a> (dari <strong>xtools</strong>) dan selesaikan konfigurasinya. Atau, masukkan chroot bisa dibuat secara <a href="">manual</a> .</p>
+
+            <div class="alert">
+                <p># xchroot /mnt</p>
+                <p>[xchroot /mnt] # chown root:root /</p>
+                <p>[xchroot /mnt] # chmod 755 /</p>
+                <p>[xchroot /mnt] # passwd root</p>
+                [xchroot /mnt] # echo voidvm > /etc/hostname
+            </div>
+
+            <h2>Locale System (GLIBC Only)</h2>
+            <p>Khusus untuk sistem glibc, buat file locale dengan: </p>
+            <div class="alert">
+                <p>[xchroot /mnt] # echo "LANG=en_US.UTF-8" > /etc/locale.conf</p>
+                <p>[xchroot /mnt] # echo "en_US.UTF-8 UTF-8" >> /etc/default/libc-locales</p>
+                [xchroot /mnt] # xbps-reconfigure -f glibc-locales
+            </div>
+
+            <h3>Konfigurasi GRUB</h3>
+            <p>Selanjutnya, konfigurasikan GRUB agar dapat membuka kunci sistem file. Tambahkan baris berikut. ke <strong>/etc/default/grub</strong>: </p>
+
+            <div class="alert">
+                GRUB_ENABLE_CRYPTODISK=y
+            </div>
+
+            <p>Selanjutnya, kernel perlu dikonfigurasi untuk menemukan perangkat yang terenkripsi. Pertama, Temukan UUID perangkat tersebut. </p>
+
+            <div class="alert">
+                <p>[xchroot /mnt] # blkid -o value -s UUID /dev/sda1</p>
+                135f3c06-26a0-437f-a05e-287b036440a4
+            </div>
+
+            <p>Edit <strong>GRUB_CMDLINE_LINUX_DEFAULT=</strong> di <strong>/etc/default/grub</strong> dan tambahkan <strong>rd.lvm.vg=voidvm rd.luks.uuid=<UUID></strong> Pastikan UUID-nya cocok dengan yang ada. untuk <strong>sda1</strong> perangkat ditemukan pada output dari perintah <a href="">blkid</a> di atas. Ini akan menjadi <strong>/dev/sda2</strong> pada sistem EFI. </p>
+
+
+            <h3>Pengaturan kunci LUKS </h3>
+            <p>Dan sekarang, untuk menghindari keharusan memasukkan kata sandi dua kali saat booting, sebuah kunci akan digunakan. Dikonfigurasi untuk secara otomatis membuka kunci volume terenkripsi saat booting. Pertama, buat kunci acak. </p>
+
+            <div class="alert">
+                <p>[xchroot /mnt] # dd bs=1 count=64 if=/dev/urandom of=/boot/volume.key</p>
+                <p>64+0 records in</p>
+                <p>64+0 records out</p>
+                64 bytes copied, 0.000662757 s, 96.6 kB/s
+            </div>
+
+            <p>Selanjutnya, tambahkan kunci ke volume terenkripsi. </p>
+            <div class="alert">
+                <p>[xchroot /mnt] # cryptsetup luksAddKey /dev/sda1 /boot/volume.key</p>
+                Enter any existing passphrase:
+            </div>
+
+            <p>Ubah izin untuk melindungi kunci yang dihasilkan. </p>
+            <div class="alert">
+                <p>[xchroot /mnt] # chmod 000 /boot/volume.key</p>
+                [xchroot /mnt] # chmod -R g-rwx,o-rwx /boot
+            </div>
+
+            <p>Berkas kunci ini juga perlu ditambahkan ke <strong>/etc/crypttab</strong> Sekali lagi, ini akan terjadi <strong>/dev/sda2</strong> pada sistem EFI. </p>
+            <div class="alert">
+                voidvm   /dev/sda1   /boot/volume.key   luks
+            </div>
+
+            <p>Lalu file kunci dan <strong>crypttab</strong> perlu disertakan dalam initramfs. Buat berkas baru di <strong>/etc/dracut.conf.d/10-crypt.conf</strong> dengan baris berikut: </p>
+            <div class="alert">
+                install_items+=" /boot/volume.key /etc/crypttab "
+            </div>
+
+            <h3>Instalasi sistem lengkap </h3>
+            <p>Selanjutnya, instal boot loader ke disk. </p>
+            <div class="alert">
+                [xchroot /mnt] # grub-install /dev/sda
+            </div>
+
+            <p>Pastikan initramfs telah dibuat: </p>
+            <div class="alert">
+                [xchroot /mnt] # xbps-reconfigure -fa
+            </div>
+
+            <p>Keluar dari <strong>chroot</strong> Lepaskan (unmount) sistem file, dan mulai ulang sistem. </p>
+            <div class="alert">
+                <p>[xchroot /mnt] # exit</p>
+                <p># umount -R /mnt</p>
+                # reboot
+            </div>
+
+            <i class="fa-solid fa-chevron-left"></i><a href="../page/main038.html"> Previous Page |</a>
+            <a href="../page/main009.html">| Next Page </a><i class="fa-solid fa-chevron-right"></i>
+
+        </section>
+    <script src="../assets/main.js"></script>
+</body>
+</html>

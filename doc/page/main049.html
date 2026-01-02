@@ -60,12 +60,12 @@
                             <a href="../page/main038.html"><i class="fas fa-hdd"></i> 2.2.2 Full Disk Encryption</a>
                             <a href="../page/main039.html"><i class="fas fa-terminal"></i> 2.2.3 Root on ZFS</a>
                             <div class="nav-toggle" id="arm-devices-toggle">
-                                <a href="#"><i class="fas fa-microchip"></i> 2.2.4 ARM Devices - Coming Soon</a>
+                                <a href="../page/main009.html"><i class="fas fa-microchip"></i> 2.2.4 ARM Devices - Coming Soon</a>
                             </div>
                             <div class="nested-nav" id="arm-devices-nav">
                                 <a href="../page/main010.html"><i class="fab fa-apple"></i> 2.2.4.1 Apple Silicon - Coming Soon</a>
-                                <a href="../page/main011.html"><i class="fas fa-laptop"></i> 2.2.4.2 Lenovo Thinkpad X13s - Coming Soon</a>
-                                <a href="../page/main012.html"><i class="fas fa-microchip"></i> 2.2.4.3 Raspberry Pi - Coming Soon</a>
+                                <a href="../page/main012.html"><i class="fas fa-laptop"></i> 2.2.4.2 Lenovo Thinkpad X13s - Coming Soon</a>
+                                <a href="../page/main013.html"><i class="fas fa-microchip"></i> 2.2.4.3 Raspberry Pi - Coming Soon</a>
                             </div>
                         </div>
                         </div>
@@ -77,14 +77,14 @@
                         <a href="../page/main014.html"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
                     </div>
                     <div class="nested-nav" id="configuration-nav">
-                        <a href="../page/main015.html"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
+                        <a href="../page/main014.html"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
                         <div class="nav-toggle" id="x11-toggle">
                         </div>
                         <div class="nested-nav" id="x11-nav">
-                            <a href="../page/main049.html"><i class="fa-solid fa-wifi"></i> 3.1.1 Locale & Translations</a>
+                            <a href="#"><i class="fa-solid fa-wifi"></i> 3.1.1 Locale & Translations</a>
                         </div>
                         <a href="../page/main016.html"><i class="fas fa-server"></i> 3.2 Kernel</a>
-                        <a href="../page/main017.html"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
+                        <a href="../page/main017.html"><i class="fas fa-clock"></i> 3.3 Date & Time</a>
                         <a href="../page/main018.html"><i class="fa-solid fa-user"></i> 3.4 Users & Group</a>
                         <a href="../page/main041.html"><i class="fa-solid fa-battery-full"></i> 3.5 Power Management</a>
                         <div class="nav-toggle" id="x11-toggle">
@@ -151,18 +151,23 @@
 
     <main class="container">
         <section id="about" class="content-section">
-            <h1>ARM Devices</h1>
-            <h3>Coming Soon</h3>
-         
-            <div class="alert">
-                <strong>Catatan:</strong>
-                <ul style="list-style-type: disc;">
-                    <li><a href="https://github.com/gh0st4n/T4n-OS/issues">Issues</a>. Berikan Masukkan/Masalah </li>
-                </ul>
-            </div>
+            <h1>Locales &  Translations</h1>
+            <p><strong>glibc</strong> mendukung pengaturan locale sistem sedangkan <strong>musl</strong> tidak; keduanya mendukung Mengatur bahasa untuk aplikasi. </p>
 
-            <i class="fa-solid fa-chevron-left"></i><a href="../page/main039.html"> Previous Page |</a>
-            <a href="../page/main010.html">| Next Page </a><i class="fa-solid fa-chevron-right"></i>
+            <h3>Daftar Locale</h3>
+            <pre><code>$ locale -a</code></pre>
+
+            <h3>Enabling locales</h3>
+            <p>Untuk mengaktifkan locale tertentu, hapus tanda komentar atau tambahkan baris yang relevan di /etc/default/libc-locales dan <a href="../page/main030.html">memaksa konfigurasi</a> ulang <strong>glibc-locales</strong> kemasan. </p>
+
+            <h3>Mengatur Bahasa Sistem</h3>
+            <p>Mengatur <strong>LANG=xxxx</strong>di dalam <strong>/etc/locale.conf</strong> </p>
+
+            <h3>Locale Application</h3>
+            <p>Beberapa program memiliki terjemahannya dalam paket terpisah yang harus diunduh. diinstal agar dapat digunakan. Anda dapat cari bahasa yang diinginkan (misalnya "Jerman" atau "Portugis") di repositori paket dan instal paket yang relevan dengan aplikasi yang Anda gunakan. Kasus yang sangat relevan adalah saat menginstal paket individual dari rangkaian LibreOffice, seperti <strong>libreoffice-writer</strong>, yang memerlukan pemasangan setidaknya salah satu dari <strong>libreoffice-i18n-*</strong> agar paket dapat berfungsi dengan benar. Ini tidak diperlukan ketika memasang <strong>libreoffice</strong> meta-paket, karena dengan melakukan itu akan menginstal yang paling banyak paket terjemahan umum. </p>
+
+            <i class="fa-solid fa-chevron-left"></i><a href="../page/main014.html"> Previous Page |</a>
+            <a href="../page/main016.html">| Next Page </a><i class="fa-solid fa-chevron-right"></i>
 
         </section>
     <script src="../assets/main.js"></script>

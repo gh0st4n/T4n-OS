@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi T4n OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-terminal"></i>
+            <span>T4n OS Documentation</span>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </header>
+
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>T4n OS</h2>
+            <p>Based on Void Linux</p>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <div class="nav-toggle" id="about-toggle">
+                        <a href="../index.html"><i class="fas fa-info-circle"></i> 1. About</a>
+                    </div>
+                    <div class="nested-nav" id="about-nav">
+                        <a href="../page/main001.html"><i class="fas fa-history"></i> 1.1 History</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="installation-toggle">
+                        <a href="../page/main002.html"><i class="fas fa-download"></i> 2. Installation</a>
+                    </div>
+                    <div class="nested-nav" id="installation-nav">
+                        <div class="nav-toggle" id="live-installer-toggle">
+                            <a href="../page/main003.html"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
+                        </div>
+                        <div class="nested-nav" id="live-installer-nav">
+                            <a href="../page/main004.html"><i class="fas fa-hdd"></i> 2.1.1 Prepare Installation Media</a>
+                            <a href="../page/main005.html"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
+                            <a href="../page/main006.html"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
+                        </div>
+                        <div class="nav-toggle" id="advanced-installation-toggle">
+                            <a href="../page/main007.html"><i class="fas fa-cogs"></i> 2.2 Advanced Installation Guide</a>
+                        </div>
+                        <div class="nested-nav" id="advanced-installation-nav">
+                            <a href="../page/main008.html"><i class="fas fa-terminal"></i> 2.2.1 Installation via chroot (x86/x86_64/aarch64)</a>
+                            <a href="../page/main038.html"><i class="fas fa-hdd"></i> 2.2.2 Full Disk Encryption</a>
+                            <a href="../page/main039.html"><i class="fas fa-terminal"></i> 2.2.3 Root on ZFS</a>
+                            <div class="nav-toggle" id="arm-devices-toggle">
+                                <a href="../page/main009.html"><i class="fas fa-microchip"></i> 2.2.4 ARM Devices - Coming Soon</a>
+                            </div>
+                            <div class="nested-nav" id="arm-devices-nav">
+                                <a href="../page/main010.html"><i class="fab fa-apple"></i> 2.2.4.1 Apple Silicon - Coming Soon</a>
+                                <a href="../page/main011.html"><i class="fas fa-laptop"></i> 2.2.4.2 Lenovo Thinkpad X13s - Coming Soon</a>
+                                <a href="../page/main012.html"><i class="fas fa-microchip"></i> 2.2.4.3 Raspberry Pi - Coming Soon</a>
+                            </div>
+                        </div>
+                        </div>
+                        <a href="../page/main013.html"><i class="fas fa-cube"></i> 2.3 Musl - Coming Soon</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="configuration-toggle">
+                        <a href="../page/main014.html"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
+                    </div>
+                    <div class="nested-nav" id="configuration-nav">
+                        <a href="../page/main015.html"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main049.html"><i class="fa-solid fa-wifi"></i> 3.1.1 Locale & Translations</a>
+                        </div>
+                        <a href="#"><i class="fas fa-server"></i> 3.2 Kernel</a>
+                        <a href="../page/main017.html"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
+                        <a href="../page/main018.html"><i class="fa-solid fa-user"></i> 3.4 Users & Group</a>
+                        <a href="../page/main041.html"><i class="fa-solid fa-battery-full"></i> 3.5 Power Management</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main042.html"><i class="fa-solid fa-network-wired"></i> 3.6 Network</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main043.html"><i class="fa-solid fa-wifi"></i> 3.6.1 wpa_supplicant</a>
+                            <a href="../page/main044.html"><i class="fa-solid fa-wifi"></i> 3.6.2 NetworkManager</a>
+                            <a href="../page/main045.html"><i class="fa-solid fa-wifi"></i> 3.6.3 IWD</a>
+                            <a href="../page/main046.html"><i class="fa-solid fa-wifi"></i> 3.6.4 ConnMan</a>
+                            <a href="../page/main047.html"><i class="fa-solid fa-wifi"></i> 3.6.5 NetworkManager</a>
+                            <a href="../page/main048.html"><i class="fas fa-exchange-alt"></i> 3.6.6 Firewalls</a>
+                        </div>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main019.html"><i class="fas fa-desktop"></i> 3.7 X11</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main020.html"><i class="fas fa-window-maximize"></i> 3.7.1 XFCE4</a>
+                            <a href="../page/main021.html"><i class="fas fa-th"></i> 3.7.2 BSPWM</a>
+                        </div>
+                        <div class="nav-toggle" id="wayland-toggle">
+                            <a href="../page/main022.html"><i class="fas fa-desktop"></i> 3.8 Wayland - Coming Soon</a>
+                        </div>
+                        <div class="nested-nav" id="wayland-nav">
+                            <a href="../page/main023.html"><i class="fas fa-desktop"></i> 3.8.1 KDE - Coming Soon</a>
+                            <a href="../page/main024.html"><i class="fas fa-water"></i> 3.8.2 River - Coming Soon</a>
+                        </div>
+                        <div class="nav-toggle" id="runit-toggle">
+                            <a href="../page/main025.html"><i class="fas fa-play-circle"></i> 3.9 Runit</a>
+                        </div>
+                        <div class="nested-nav" id="runit-nav">
+                            <a href="../page/main026.html"><i class="fas fa-book"></i> 3.9.1 How To Use Runit</a>
+                            <a href="../page/main027.html"><i class="fas fa-tools"></i> 3.9.2 How To Build Service</a>
+                            <a href="../page/main028.html"><i class="fas fa-wrench"></i> 3.9.3 Troubleshooting</a>
+                        </div>
+                        <a href="../page/main029.html"><i class="fas fa-cogs"></i> 3.10 SystemD - Coming Soon</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="xbps-toggle">
+                        <a href="../page/main030.html"><i class="fas fa-box"></i> 4. XBPS Package Manager</a>
+                    </div>
+                    <div class="nested-nav" id="xbps-nav">
+                        <a href="../page/main031.html"><i class="fas fa-cogs"></i> 4.1 Advanced Usage</a>
+                        <div class="nav-toggle" id="mirrors-toggle">
+                            <a href="../page/main032.html"><i class="fas fa-clone"></i> 4.2 Repositories</a>
+                        </div>
+                        <div class="nested-nav" id="mirrors-nav">
+                            <a href="../page/main040.html"><i class="fas fa-exchange-alt"></i> 4.2.1 Mirrors</a>
+                            <a href="../page/main033.html"><i class="fas fa-exchange-alt"></i> 4.2.2 Changing Mirrors</a>
+                            <a href="../page/main034.html"><i class="fas fa-user-secret"></i> 4.2.3 Using Tor Mirror</a>
+                        </div>
+                     <div>
+                         <a href="../page/main035.html"><i class="fas fa-wrench"></i> 4.3 Troubleshooting XBPS</a>
+                     </div>
+                     <div class="nested-nav">
+                        <a href="../page/main036.html"><i class="fas fa-cogs"></i> 4.3.1 Common Issues</a>
+                        <a href="../page/main037.html"><i class="fas fa-cube"></i> 4.3.2 Static XBPS</a>
+                     </div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="container">
+        <section id="about" class="content-section">
+            <h1>Kernel</h1>
+            <h2>Kernel Series</h2>
+            <p>Void Linux menyediakan banyak seri kernel di repositori default. Seri-seri tersebut adalah: bernama <strong>linux[x].[y]</strong>: Misalnya, <strong>linux4.19</strong> Anda dapat menanyakan semua yang tersedia. rangkaian kernel dengan menjalankan: </p>
+            <pre><code>$ xbps-query --regex -Rs '^linux[0-9.]+-[0-9._]+' | sort -Vrk2</code></pre>
+
+            <p>Itu <strong>linux</strong> Paket meta, yang diinstal secara default, bergantung pada salah satu kernel. paket, biasanya paket yang berisi kernel utama terbaru yang berfungsi. dengan semua modul DKMS. Kernel yang lebih baru mungkin tersedia di repositori, tetapi belum tentu dianggap cukup stabil untuk menjadi pengaturan default; gunakan ini jika Risiko ditanggung sendiri. Jika Anda ingin menggunakan kernel yang lebih baru dan memiliki modul DKMS yang perlu Anda bangun, instal yang relevan <strong>linux[x].[y]-headers</strong> kemasan, lalu gunakan <a href="">xbps-reconfigure</a> untuk mengkonfigurasi ulang <strong>linux[x].[y]</strong> paket yang</p>
+
+            <h2>Menghapus Kernel Lama</h2>
+            <p>Saat memperbarui kernel, versi lama akan tetap disimpan jika diperlukan. untuk mengembalikan ke versi yang lebih lama. Seiring waktu, versi kernel lama dapat menumpuk, Memakan ruang disk dan meningkatkan waktu yang dibutuhkan oleh pembaruan modul DKMS. Selanjutnya, jika <strong>/boot</strong> merupakan partisi terpisah dan akan penuh dengan kernel-kernel lama, Pembaruan dapat gagal atau mengakibatkan pembuatan sistem file initramfs yang tidak lengkap. dan mengakibatkan kernel panic jika sedang di-boot. Oleh karena itu, mungkin disarankan untuk membersihkan biji-bijian tua dari waktu ke waktu. </p>
+
+            <p>Menghapus kernel lama dilakukan dengan menggunakan <a href="">vkpurge</a> . utilitas <strong>vkpurg</strong> edatang Terinstal sebelumnya di setiap sistem Void Linux. Utilitas ini menjalankan hal-hal yang diperlukan. <strong>hooks</strong> saat menghapus kernel lama. Perhatikan bahwa <strong>vkpurge</strong> tidak Hapus paket kernel , hanya kernel tertentu . </p>
+
+            <h2>Menghapus series kernel default </h2>
+            <p>Jika Anda telah menginstal paket kernel untuk seri selain seri default, dan Jika ingin menghapus paket kernel default, Anda harus menginstal <strong>linux-base</strong> kemas atau <a href="">beri tanda sebagai kemasan manual</a> jika sudah terpasang. Setelah prosedur ini, Anda dapat menghapusnya. paket kernel default dengan <a href="">xbps-remove</a> . Mungkin diperlukan untuk menambahkan linux Dan linux-headerske sebuah ignorepkgentri di <a href="">xbps.d</a>, karena paket dasar dapat bergantung pada mereka. </p>
+
+            <h2>Beralih ke seri kernel lain </h2>
+            <p>Jika Anda ingin menggunakan <strong>linux-lts</strong> atau <strong>linux-mainline</strong> seri kernel sebagai gantinya dari default <strong>linux</strong>, pertama-tama instal metapaket seri yang diinginkan dan <strong>linux-lts-headers</strong> atau <strong>linux-mainline-headers</strong> metapaket jika diperlukan. Kemudian Anda dapat menambahkan <strong>linux</strong> Dan <strong>linux-headers</strong> ke sebuah <strong>ignorepkg</strong> entri di <a href="">xbps.d</a> dan hapus instalasi paket-paket tersebut. </p>
+
+            <h2>Mengubah generator initramfs default </h2>
+            <p>Secara default, Void Linux menggunakan <strong>dracut</strong> untuk Mempersiapkan citra initramfs untuk kernel yang terpasang. Alternatif seperti <strong>mkinitcpio</strong> tersedia. Masing-masing Generator initramfs mendaftarkan <strong>XBPS alternatif</strong> dalam <strong>initramfs</strong> grup untuk menghubungkan <strong>Hooks</strong> kernelnya yang akan digunakan saat membuat atau menghapus image initramfs untuk kernel tertentu. </p>
+
+            <p>Untuk mengganti dracut dengan, misalnya mkinitcpio, instal package <strong>mkinitcpio</strong>, mengkonfirmasi bahwa <strong>mkinitcpio</strong> muncul dalam daftar alternatif yang tersedia oleh berlari </p>
+            <pre><code>$ xbps-alternatives -l -g initramfs</code></pre>
+            <p>Keluarkan perintah </p>
+            <pre><code># xbps-alternatives -s mkinitcpio</code></pre>
+
+            <p>untuk mengganti kernel hook dracut dengan yang disediakan oleh mkinitcpio. Dengan pembaruan kernel berikutnya (atau pembaruan pada paket DKMS yang memicu initramfs) regenerasi), mkinitcpio akan digunakan sebagai pengganti dracut untuk mempersiapkan initramfs Untuk memaksa pembuatan ulang gambar, konfigurasikan ulang paket kernel Anda dengan memanggil </p>
+
+            <pre><code># xbps-reconfigure -f linux<x>.<y></code></pre>
+
+            <p>untuk setiap <strong>linux[x].[y]</strong> paket yang saat ini terpasang.</p>
+
+            <h2>CMD Line</h2>
+            <p>Kernel, disk RAM awal (initrd), dan beberapa program sistem dapat berupa... Dikonfigurasi saat booting melalui argumen baris perintah kernel. Parameter-parameter tersebut dipahami. Penjelasan mengenai kernel terdapat pada <a href="https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html">parameter kernel. dokumentasi</a> dan oleh <a href="">bootparam</a> . Parameter dipahami oleh dracut dapat ditemukan di <a href="">dracut.cmdline</a>. </p>
+
+            <p>Setelah sistem berhasil di-boot, parameter baris perintah kernel saat ini dapat dilihat di... ditemukan di <strong>/proc/cmdline</strong> berkas. Beberapa program sistem dapat mengubah berkas mereka. perilaku berdasarkan parameter yang diteruskan di baris perintah, yaitu apa terjadi saat <a href="../page/main025.html">melakukan booting yang berbeda runsvdir</a> , misalnya. </p>
+
+            <h2>GRUB</h2>
+            <p>Argumen baris perintah kernel dapat ditambahkan melalui bootloader GRUB dengan cara berikut: penyuntingan <strong>/etc/default/grub</strong>, mengubah <strong>GRUB_CMDLINE_LINUX_DEFAULT</strong> variabel lalu berlari <strong>update-grub</strong>. </p>
+
+            <h2>Dracut</h2>
+            <p>Dracut menawarkan <strong>kernel_cmdline</strong> <a href="">konfigurasi pilihan</a> dan <strong>--kernel-cmdline</strong> <a href="">opsi baris perintah</a> yang akan mengkodekan argumen baris perintah langsung di dalam citra initramfs. Saat dracut digunakan untuk Buat file eksekusi UEFI, argumen yang diatur dengan opsi ini akan diteruskan ke kernel. Namun, ketika initramfs biasa dihasilkan, opsi-opsi ini akan tidak akan diteruskan ke kernel saat boot. Sebaliknya, data tersebut akan ditulis ke sebuah file konfigurasi di <strong>/etc/cmdline.d</strong> di dalam gambar. Sementara dracut mengurai Konfigurasi ini untuk mengontrol perilaku boot-time-nya sendiri, kernel itu sendiri akan tidak mengetahui apa pun yang diatur melalui mekanisme ini. </p>
+            <p>Setelah memodifikasi konfigurasi dracut, <strong>ulang</strong> buat initramfs untuk memastikan bahwa perubahan tersebut disertakan. </p>
+
+            <h2>Kernel hardening</h2>
+            <p>Void Linux hadir dengan beberapa opsi keamanan kernel yang diaktifkan secara default. Ini adalah awalnya disediakan oleh argumen baris perintah kernel <strong>slub_debug=P page_poison=1</strong> Namun, sejak seri kernel 5.3, ini telah digantikan dengan <strong>init_on_alloc</strong> Dan <strong>init_on_free</strong>(lihat <a href="https://github.com/torvalds/linux/commit/6471384af">Commit ini</a>). </p>
+
+            </p>Inti Void hadir dengan <strong>init_on_alloc</strong> opsi diaktifkan secara default di mana tersedia (yaitu <strong>linux5.4</strong> dan lebih besar). Dalam kebanyakan kasus, Anda biasanya tidak perlu Nonaktifkan saja, karena dampaknya terhadap performa cukup minimal (dalam 1%). Yang <strong>init_on_free</strong> Opsi ini lebih mahal (rata-rata sekitar 5%) dan perlu... diaktifkan secara manual dengan cara meneruskan <strong>init_on_free=1</strong> pada baris perintah kernel. Jika Anda perlu dinonaktifkan <strong>init_on_alloc</strong> Anda dapat melakukan hal serupa dengan cara meneruskan <strong>init_on_alloc=0</strong>.</p>
+            <p>Ada kemungkinan sistem Anda saat ini masih mengaktifkan opsi lama. Meskipun masih berfungsi di kernel yang lebih baru, dampaknya terhadap performa lebih terasa. dengan <strong>init_on_free=1</strong> Pada perangkat keras yang lebih lama, hal ini bisa sangat terlihat. Jika Anda Jika Anda menjalankan seri kernel yang lebih lama dari 5.4, Anda dapat mempertahankannya (atau menambahkannya) untuk... Keamanan ekstra dengan mengorbankan kecepatan; jika tidak, Anda harus menghapusnya. </p>
+
+            <h3>Kernel Module</h3>
+            <p>Modul kernel biasanya berupa driver untuk perangkat atau sistem file. </p>
+
+            <h3>Memuat modul kernel selama proses booting. </h3>
+            <p>Biasanya kernel secara otomatis memuat modul yang dibutuhkan, tetapi terkadang mungkin perlu secara eksplisit menentukan modul yang akan dimuat selama proses booting. </p>
+
+            <p>Untuk memuat modul kernel selama proses booting, sebuah .conffile seperti /etc/modules-load.d/virtio.confperlu dibuat dengan isi sebagai berikut: </p>
+            <pre><code># load virtio-net
+virtio-net</code></pre>
+
+            <h3>Memblokir modul kernel </h3>
+            <p>Memblokir modul kernel adalah metode untuk mencegah modul dimuat. oleh kernel. Ada dua metode berbeda untuk memasukkan modul kernel ke daftar hitam, satu untuk modul yang dimuat oleh initramfs dan satu untuk modul yang dimuat setelahnya. Proses initramfs telah selesai. Modul yang dimuat oleh initramfs haruslah... Masuk daftar hitam dalam konfigurasi initramfs.</p>
+
+            <p>Untuk memblokir modul yang dimuat setelah proses initramfs, buatlah sebuah .confberkas, menyukai /etc/modprobe.d/radeon.conf, dengan isi sebagai berikut: </p>
+            <pre><code>blacklist radeon</code></pre>
+
+            <h3>Memblokir modul di initramfs </h3>
+            <p>Setelah melakukan perubahan yang diperlukan pada file konfigurasi, initramfs perlu diregenerasi agar perubahan berlaku pada booting berikutnya.  </p>
+
+            <p><a>dracut</a></p>
+
+            <p>Dracut dapat dikonfigurasi agar tidak menyertakan modul kernel melalui konfigurasi. Untuk memblokir modul agar tidak disertakan dalam initramfs dracut, buatlah sebuah file <strong>.conf</strong> berkas, seperti <strong>/etc/dracut.conf.d/radeon.conf</strong>, dengan isi sebagai berikut: </p>
+            <pre><code>omit_drivers+=" radeon "</code></pre>
+
+            <p><a>mkinitcipio</a></p>
+
+            <p>Untuk memblokir modul agar tidak disertakan dalam mkinitcpio initramfs <strong>.conf</strong> berkas perlu dibuat seperti ini <strong>/etc/modprobe.d/radeon.conf</strong> dengan isi sebagai berikut: </p>
+            <pre><code>blacklist radeon</code></pre>
+
+            <h2>Kernel Hooks</h2>
+            <p>Void Linux menyediakan direktori untuk kernel hook di <strong>/etc/kernel.d/{pre-install,post-install,pre-remove,post-remove}</strong>. </p>
+            <p>Hook ini digunakan untuk memperbarui menu boot untuk bootloader seperti <strong>grub</strong>, <strong>gummiboot</strong> Dan <strong>lilo</strong>. </p>
+
+            <h3>Install Hooks</h3>
+            <p>Itu <strong>{pre,post}-installhook</strong> dieksekusi oleh <a href="">xbps-reconfigure</a> ketika Mengkonfigurasi kernel Linux, seperti membangun initramfs-nya. Ini terjadi ketika sebuah Seri kernel diinstal untuk pertama kalinya atau diperbarui, tetapi juga dapat dijalankan. secara manual: </p>
+            <pre><code># xbps-reconfigure --force linux<x>.<y></code></pre>
+            <p>Jika dijalankan secara manual, perintah ini berfungsi untuk menerapkan perubahan konfigurasi initramfs ke proses bot berikutnya. </p>
+
+            <h3>Remove Hooks</h3>
+            <p>Itu <strong>{pre,post}-removehook</strong> dieksekusi oleh <a href="">vkpurge</a> saat menghapus kernel lama. </p>
+
+            <i class="fa-solid fa-chevron-left"></i><a href="../page/main007.html"> Previous Page |</a>
+            <a href="../page/main038.html">| Next Page </a><i class="fa-solid fa-chevron-right"></i>
+
+            <h2>Dukungan Modul Kernel Dinamis (DKMS) </h2>
+            <p>Terdapat modul kernel yang bukan bagian dari pohon kode sumber Linux yang Dibangun pada saat instalasi menggunakan DKMS dan kernel hook . The Modul yang tersedia dapat dilihat dengan melakukan pencarian <srong>dkms</strong> di dalam paket repositori. </p>
+            <p>Log pembangunan DKMS tersedia di <strong>/var/lib/dkms/</strong>.</p>
+
+            <i class="fa-solid fa-chevron-left"></i><a href="../page/main049.html"> Previous Page |</a>
+            <a href="../page/main017.html">| Next Page </a><i class="fa-solid fa-chevron-right"></i>
+
+        </section>
+    <script src="../assets/main.js"></script>
+</body>
+</html>

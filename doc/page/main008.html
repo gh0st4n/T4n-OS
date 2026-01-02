@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi T4n OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-terminal"></i>
+            <span>T4n OS Documentation</span>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </header>
+
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>T4n OS</h2>
+            <p>Based on Void Linux</p>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <div class="nav-toggle" id="about-toggle">
+                        <a href="../index.html"><i class="fas fa-info-circle"></i> 1. About</a>
+                    </div>
+                    <div class="nested-nav" id="about-nav">
+                        <a href="../page/main001.html"><i class="fas fa-history"></i> 1.1 History</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="installation-toggle">
+                        <a href="../page/main002.html"><i class="fas fa-download"></i> 2. Installation</a>
+                    </div>
+                    <div class="nested-nav" id="installation-nav">
+                        <div class="nav-toggle" id="live-installer-toggle">
+                            <a href="../page/main003.html"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
+                        </div>
+                        <div class="nested-nav" id="live-installer-nav">
+                            <a href="../page/main004.html"><i class="fas fa-hdd"></i> 2.1.1 Prepare Installation Media</a>
+                            <a href="../page/main005.html"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
+                            <a href="../page/main006.html"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
+                        </div>
+                        <div class="nav-toggle" id="advanced-installation-toggle">
+                            <a href="../page/main007.html"><i class="fas fa-cogs"></i> 2.2 Advanced Installation Guide</a>
+                        </div>
+                        <div class="nested-nav" id="advanced-installation-nav">
+                            <a href="#"><i class="fas fa-terminal"></i> 2.2.1 Installation via chroot (x86/x86_64/aarch64)</a>
+                            <a href="../page/main038.html"><i class="fas fa-hdd"></i> 2.2.2 Full Disk Encryption</a>
+                            <a href="../page/main039.html"><i class="fas fa-terminal"></i> 2.2.3 Root on ZFS</a>
+                            <div class="nav-toggle" id="arm-devices-toggle">
+                                <a href="../page/main009.html"><i class="fas fa-microchip"></i> 2.2.4 ARM Devices - Coming Soon</a>
+                            </div>
+                            <div class="nested-nav" id="arm-devices-nav">
+                                <a href="../page/main010.html"><i class="fab fa-apple"></i> 2.2.4.1 Apple Silicon - Coming Soon</a>
+                                <a href="../page/main011.html"><i class="fas fa-laptop"></i> 2.2.4.2 Lenovo Thinkpad X13s - Coming Soon</a>
+                                <a href="../page/main012.html"><i class="fas fa-microchip"></i> 2.2.4.3 Raspberry Pi - Coming Soon</a>
+                            </div>
+                        </div>
+                        </div>
+                        <a href="../page/main013.html"><i class="fas fa-cube"></i> 2.3 Musl - Coming Soon</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="configuration-toggle">
+                        <a href="../page/main014.html"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
+                    </div>
+                    <div class="nested-nav" id="configuration-nav">
+                        <a href="../page/main015.html"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main049.html"><i class="fa-solid fa-wifi"></i> 3.1.1 Locale & Translations</a>
+                        </div>
+                        <a href="../page/main016.html"><i class="fas fa-server"></i> 3.2 Kernel</a>
+                        <a href="../page/main017.html"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
+                        <a href="../page/main018.html"><i class="fa-solid fa-user"></i> 3.4 Users & Group</a>
+                        <a href="../page/main041.html"><i class="fa-solid fa-battery-full"></i> 3.5 Power Management</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main042.html"><i class="fa-solid fa-network-wired"></i> 3.6 Network</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main043.html"><i class="fa-solid fa-wifi"></i> 3.6.1 wpa_supplicant</a>
+                            <a href="../page/main044.html"><i class="fa-solid fa-wifi"></i> 3.6.2 NetworkManager</a>
+                            <a href="../page/main045.html"><i class="fa-solid fa-wifi"></i> 3.6.3 IWD</a>
+                            <a href="../page/main046.html"><i class="fa-solid fa-wifi"></i> 3.6.4 ConnMan</a>
+                            <a href="../page/main047.html"><i class="fa-solid fa-wifi"></i> 3.6.5 NetworkManager</a>
+                            <a href="../page/main048.html"><i class="fas fa-exchange-alt"></i> 3.6.6 Firewalls</a>
+                        </div>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main019.html"><i class="fas fa-desktop"></i> 3.7 X11</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main020.html"><i class="fas fa-window-maximize"></i> 3.7.1 XFCE4</a>
+                            <a href="../page/main021.html"><i class="fas fa-th"></i> 3.7.2 BSPWM</a>
+                        </div>
+                        <div class="nav-toggle" id="wayland-toggle">
+                            <a href="../page/main022.html"><i class="fas fa-desktop"></i> 3.8 Wayland - Coming Soon</a>
+                        </div>
+                        <div class="nested-nav" id="wayland-nav">
+                            <a href="../page/main023.html"><i class="fas fa-desktop"></i> 3.8.1 KDE - Coming Soon</a>
+                            <a href="../page/main024.html"><i class="fas fa-water"></i> 3.8.2 River - Coming Soon</a>
+                        </div>
+                        <div class="nav-toggle" id="runit-toggle">
+                            <a href="../page/main025.html"><i class="fas fa-play-circle"></i> 3.9 Runit</a>
+                        </div>
+                        <div class="nested-nav" id="runit-nav">
+                            <a href="../page/main026.html"><i class="fas fa-book"></i> 3.9.1 How To Use Runit</a>
+                            <a href="../page/main027.html"><i class="fas fa-tools"></i> 3.9.2 How To Build Service</a>
+                            <a href="../page/main028.html"><i class="fas fa-wrench"></i> 3.9.3 Troubleshooting</a>
+                        </div>
+                        <a href="../page/main029.html"><i class="fas fa-cogs"></i> 3.10 SystemD - Coming Soon</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="xbps-toggle">
+                        <a href="../page/main030.html"><i class="fas fa-box"></i> 4. XBPS Package Manager</a>
+                    </div>
+                    <div class="nested-nav" id="xbps-nav">
+                        <a href="../page/main031.html"><i class="fas fa-cogs"></i> 4.1 Advanced Usage</a>
+                        <div class="nav-toggle" id="mirrors-toggle">
+                            <a href="../page/main032.html"><i class="fas fa-clone"></i> 4.2 Repositories</a>
+                        </div>
+                        <div class="nested-nav" id="mirrors-nav">
+                            <a href="../page/main040.html"><i class="fas fa-exchange-alt"></i> 4.2.1 Mirrors</a>
+                            <a href="../page/main033.html"><i class="fas fa-exchange-alt"></i> 4.2.2 Changing Mirrors</a>
+                            <a href="../page/main034.html"><i class="fas fa-user-secret"></i> 4.2.3 Using Tor Mirror</a>
+                        </div>
+                     <div>
+                         <a href="../page/main035.html"><i class="fas fa-wrench"></i> 4.3 Troubleshooting XBPS</a>
+                     </div>
+                     <div class="nested-nav">
+                        <a href="../page/main036.html"><i class="fas fa-cogs"></i> 4.3.1 Common Issues</a>
+                        <a href="../page/main037.html"><i class="fas fa-cube"></i> 4.3.2 Static XBPS</a>
+                     </div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="container">
+        <section id="about" class="content-section">
+            <h1>Installation Via Chroot(x86/x86_64)</h1>
+            <p>Panduan ini menjelaskan secara detail proses instalasi Void secara manual melalui chroot pada sebuah sistem. Arsitektur x86, x86_64, atau aarch64. Diasumsikan Anda sudah familiar dengan arsitektur tersebut. dengan Linux, tetapi belum tentu dengan menginstal sistem Linux melalui chroot. Panduan ini dapat digunakan untuk membuat pengaturan "tipikal", menggunakan satu partisi pada satu disk SATA/IDE/USB. Setiap langkah dapat dimodifikasi untuk menciptakan solusi yang kurang umum. pengaturan, seperti <a href="../page/main038.html">Full Disk Encryption</a>.</p>
+
+            <p>Void menyediakan dua opsi untuk memulai instalasi baru. <strong>XBPS</strong> Metode ini menggunakan XBPS Package Manager yang berjalan pada sebuah host. Sistem operasi untuk menginstal sistem dasar. Metode ROOTFS menginstal sistem dasar dengan mengekstrak file tarball <strong>ROOTFS</strong>. </p>
+
+            <p>Metode <strong>XBPS</strong> mensyaratkan bahwa sistem operasi host telah menginstal XBPS. Ini mungkin merupakan instalasi Void yang sudah ada, sebuah pertunjukan <a href="../page/main004.html">langsung resmi citra</a> , atau instalasi Linux apa pun yang menjalankan secara <a href="../page/main037.html">statis XBPS terhubung</a>. </p>
+
+            <p>Metode <strong>ROOTFS</strong> hanya memerlukan sistem operasi host yang dapat masuk ke Linux chroot dan itu memiliki <a href="#">tar</a> dan <a href="#">xz</a> terpasang. Metode ini mungkin lebih disukai jika Anda ingin menginstal Void menggunakan distribusi Linux yang berbeda. <p>
+
+            <h2>Prepare Filesystems</h2>
+            <p><a href="">Partisi Disk Anda</a> dan format menggunakan <a href="">mke2fs</a>, <a href="">mkfs.xfs</a>, <a href="">mkfs.btrfs</a> atau alat apa pun yang tersedia diperlukan untuk sistem file pilihan Anda. </p>
+
+            <p><a href="">cfdisk</a> dan <a href="">fdisk</a> tersedia pada gambar langsung untuk partisi, tetapi Anda mungkin ingin menggunakan <a href="">gdisk</a> (dari paket <strong>gptfdisk</strong>) atau <a href="">parted</a> sebagai gantinya. </p>
+
+            <p>Untuk sistem booting UEFI, pastikan untuk membuat Partisi Sistem EFI (ESP). ESP harus memiliki tipe partisi "Sistem EFI" (kode EF00) dan menjadi diformat sebagai FAT32 menggunakan <a href="">mkfs.vfat</a>. </p>
+
+            <p>Jika Anda tidak yakin partisi apa yang harus dibuat, buat partisi 1GB dengan tipe "EFI" Sistem" (kode <strong>EF00</strong>), kemudian buat partisi kedua dengan tipe "Sistem Berkas Linux" (kode <strong>8300</strong>) menggunakan sisa ruang penyimpanan di hard drive. </p>
+
+            <p>Format partisi-partisi ini masing-masing sebagai FAT32 dan ext4: </p>
+            <div class="alert">
+                <p># mkfs.vfat /dev/sda1</p>
+                # mkfs.ext4 /dev/sda2
+            </div>
+
+            <h2>Create a New Root and Mount a File System</h2>
+            <p>Panduan ini mengasumsikan bahwa sistem file root yang baru telah terpasang pada <strong>/mnt</strong> Anda mungkin ingin memasangnya di tempat lain. </p>
+
+            <p>Jika menggunakan UEFI, pasang Partisi Sistem EFI sebagai <strong>/mnt/boot/efi</strong>.</p>
+
+            <p>Sebagai contoh, jika <strong>/dev/sda2</strong> akan dipasang sebagai <strong>/</strong> Dan <strong>dev/sda1</strong> adalah EFI Partisi Sistem: </p>
+            <div class="alert">
+                <p># mount /dev/sda2 /mnt/</p>
+                <p># mkdir -p /mnt/boot/efi/2</p>
+                # mount /dev/sda1 /mnt/boot/efi/
+            </div>
+
+            <p>Inisialisasi ruang swap, jika diinginkan, menggunakan <a href="">mkswap</a>, dan mengaktifkannya dengan <a href="">swapon</a>. </p>
+
+            <h2>Basic Installation</h2>
+            <p>Ikuti hanya salah satu dari dua subbagian berikut. </p>
+
+            <p>Jika menggunakan arsitektur aarch64, maka perlu menginstal paket kernel tambahan. <strong>base-system</strong>. Misalnya, <strong>linux</strong> adalah paket kernel yang mengarah ke Kernel stabil terbaru yang dikemas oleh Void. </p>
+
+            <h3>The XBPS Method</h3>
+            <p>Pilih <a href="../page/main032.html">mirror</a> dan gunakan <a href="../page/main032.html">URL</a> yang sesuai untuk Jenis sistem yang ingin Anda instal. Untuk mempermudah, simpan URL ini ke shell. variabel. Instalasi glibc, misalnya, akan menggunakan: </p>
+            <div class="alert">
+                # REPO=https://repo-default.voidlinux.org/current
+            </div>
+
+            <p>XBPS juga perlu mengetahui arsitektur apa yang sedang diinstal. Opsi yang tersedia adalah <strong>x86_64</strong>, <strong>x86_64-musl</strong>, <strong>i686</strong> untuk komputer arsitektur PC dan <strong>aarch64</strong>. Misalnya: </p>
+            <div class="alert">
+                # ARCH=x86_64
+            </div>
+
+            <p>Arsitektur ini harus kompatibel dengan sistem operasi Anda saat ini, tetapi Tidak harus sama. Jika host Anda menjalankan sistem operasi x86_64 sistem, salah satu dari tiga arsitektur dapat diinstal (apakah host tersebut musl atau glibc), tetapi host i686 hanya dapat menginstal distribusi i686. </p>
+            <p>Salin kunci RSA dari media instalasi ke direktori root target: </p>
+            <div class="alert">
+                <p># mkdir -p /mnt/var/db/xbps/keys</p>
+                # cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
+            </div>
+
+            <p>Gunakan <a href="../page/main030.html">xbps-install</a> untuk melakukan bootstrap pemasangan dengan memasang <strong>base-system</strong> meta package: </p>
+            <div class="alert">
+                # XBPS_ARCH=$ARCH xbps-install -S -r /mnt -R "$REPO" base-system
+            </div>
+
+            <h3>The ROOTFS Method</h3>
+            <p>Unduh <a href="">ROOTFS tarball</a> sesuai dengan arsitektur Anda. </p>
+            <p>Ekstrak file tarball ke dalam sistem file yang baru dikonfigurasi: </p>
+            <div class="alert">
+                # tar xvf void-<...>-ROOTFS.tar.xz -C /mnt
+            </div>
+
+            <p>Citra ROOTFS umumnya berisi perangkat lunak yang sudah usang, karena merupakan cuplikan dari waktu pembuatannya, dan tidak dilengkapi dengan kelengkapan <strong>base-system</strong>. Perbarui pengelola paket dan instal <strong>base-system</strong>: </p>
+
+            <div class="alert">
+                <p># xbps-install -r /mnt -Su xbps</p>
+                <p># xbps-install -r /mnt -u</p>
+                <p># xbps-install -r /mnt base-system</p>
+                # xbps-remove -r /mnt -R base-container-full
+            </div>
+
+            <h2>Konfigurasi</h2>
+            <p>Bagian selanjutnya dari panduan ini berlaku sama untuk instalasi XBPS dan ROOTFS. metode. </p>
+            <h3></h3>
+            <p>File <a href="">fstab</a> dapat secara otomatis dihasilkan dari sistem file yang saat ini terpasang menggunakan <a href="">xgenfstab</a> (dari xtools). </p>
+            <div class="alert">
+                # xgenfstab -U /mnt > /mnt/etc/fstab
+            </div>
+
+            <h3>Memasuki Chroot </h3>
+            <p><a href="">xchroot</a> (dari <strong>xtools</strong>) dapat digunakan untuk Siapkan dan masuki chroot. Atau, ini bisa dilakukan secara manual . </p>
+            <div class="alert">
+                # xchroot /mnt /bin/bash
+            </div>
+
+            <h3>Konfigurasi Instalasi</h3>
+            <p>Tentukan nama host di <strong>/etc/hostname</strong> Telusuri opsi-opsi yang tersedia <strong><a href="">/etc/rc.conf</a></strong> Jika memasang glibc distribusi, penyuntingan <strong>/etc/default/libc-locales</strong>, menghapus komentar yang diinginkan <a href="">locale</a>.</p>
+
+            </p>nvi(1) tersedia di chroot, tetapi Anda Anda mungkin ingin menginstal editor teks pilihan Anda saat ini.</p>
+            <p>Untuk build glibc, hasilkan file lokal dengan: </p>
+            <div class="alert">
+                [xchroot /mnt] # xbps-reconfigure -f glibc-locales
+            </div>
+
+            <h3>Tetapkan Kata Sandi Root</h3>
+            <p><a href="">Konfigurasikan setidaknya satu akun super user</a> . Akun pengguna lain dapat dikonfigurasi nanti, tetapi setidaknya harus ada akun root. kata sandi, atau akun pengguna baru dengan <a href="">sudo</a> hak istimewa. </p>
+            <p>Untuk mengatur kata sandi root, jalankan perintah berikut: </p>
+            <div class="alert">
+                [xchroot /mnt] # passwd
+            </div>
+
+            <h3>Aktifkan layanan </h3>
+            <p>Menggunakan <a href="">instalasi grub</a> untuk menginstal GRUB ke disk boot Anda. </p>
+
+            <p>Pada <strong>komputer BIOS</strong> , instal paket tersebut. <strong>grub</strong> lalu jalankan <strong>grub-install /dev/sdX</strong>, Di mana <strong>/dev/sdX</strong> adalah drive (bukan partisi) yang ingin Anda Instal GRUB juga. Misalnya: </p>
+            <div class="alert">
+                <p>[xchroot /mnt] # xbps-install -S grub</p>
+                [xchroot /mnt] # grub-install /dev/sda
+            </div>
+
+            <p>Pada <strong>komputer UEFI</strong> , instal salah satu dari berikut ini: <strong>grub-x86_64-efi</strong>, <strong>grub-i386-efi</strong> atau <strong>grub-arm64-efi</strong>, tergantung pada arsitektur Anda. Kemudian jalankan <strong>grub-install</strong> dengan yang benar <strong>--target</strong> argumen untuk arsitektur Anda ( <strong>x86_64-efi</strong>, <strong>i386-efi</strong>, atau <strong>arm64-efi</strong>), dan secara opsional menentukan label bootloader (label ini dapat berupa (digunakan oleh firmware komputer Anda saat memilih perangkat boot secara manual): </p>
+            <div class="alert">
+                <p>[xchroot /mnt] # xbps-install -S grub-x86_64-efi</p>
+                [xchroot /mnt] # grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="T4nOS"
+            </div>
+
+            <h3>Panduan pemecahan masalah instalasi GRUB </h3>
+            <p>Mungkin perlu untuk memasang <strong>efivarfs</strong> sistem berkas. </p>
+            <div class="alert">
+                [xchroot /mnt] # mount -t efivarfs none /sys/firmware/efi/efivars
+            </div>
+
+            <p>Jika variabel EFI masih belum tersedia, tambahkan opsi tersebut. <strong>--no-nvram</strong> ke <strong>grub-install</strong> memerintah. </p>
+
+            <h3>Instalasi pada media yang dapat dilepas atau sistem UEFI yang tidak kompatibel </h3>
+            <p>Sayangnya, tidak semua sistem memiliki UEFI yang sepenuhnya sesuai standar. implementasi. Dalam beberapa kasus, perlu untuk "mengakali" firmware agar melakukan booting dengan menggunakan lokasi fallback default untuk bootloader, bukan yang khusus. Dalam hal itu, atau jika menginstal ke disk yang dapat dilepas (seperti USB), tambahkan opsi --removableke grub-install memerintah. </p>
+
+            <p>Alternatifnya, gunakan mkdir(1) untuk membuat /boot/efi/EFI/bootdirektori dan salin file eksekusi GRUB yang sudah terinstal, biasanya terletak di /boot/efi/EFI/Void/grubx64.efi(lokasinya dapat ditemukan dengan menggunakan efibootmgr(8) ), ke dalam folder baru: </p>
+
+            <div class="alert">
+                <p>[xchroot /mnt] # mkdir -p /boot/efi/EFI/boot</p>
+                [xchroot /mnt] # cp /boot/efi/EFI/Void/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
+            </div>
+
+
+            <h2>Finalisasi</h2>
+            <p>Gunakan <a href="">xbps-reconfigure</a> untuk Pastikan semua paket yang terpasang telah dikonfigurasi dengan benar: </p>
+            <div class="alert">
+                [xchroot /mnt] # xbps-reconfigure -fa
+            </div>
+
+            <p>Ini akan membuat dracut(8) menghasilkan sebuah initramfs, dan akan membuat GRUB menghasilkan konfigurasi yang berfungsi. </p>
+            <p>Pada tahap ini, instalasi telah selesai. Keluar dari chroot dan mulai ulang komputer Anda. komputer: </p>
+
+            <div class="alert">
+                <p>[xchroot /mnt] # exit</p>
+                <p># umount -R /mnt</p>
+                # shutdown -r now
+            </div>
+
+            <p>Setelah melakukan booting ke instalasi Void Anda untuk pertama kalinya, <a href="">lakukan pemeriksaan sistem memperbarui.</a></p>
+
+            <i class="fa-solid fa-chevron-left"></i><a href="../page/main007.html"> Previous Page |</a>
+            <a href="../page/main038.html">| Next Page </a><i class="fa-solid fa-chevron-right"></i>
+
+        </section>
+    <script src="../assets/main.js"></script>
+</body>
+</html>

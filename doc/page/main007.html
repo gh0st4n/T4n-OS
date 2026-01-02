@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi T4n OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-terminal"></i>
+            <span>T4n OS Documentation</span>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </header>
+
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>T4n OS</h2>
+            <p>Based on Void Linux</p>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <div class="nav-toggle" id="about-toggle">
+                        <a href="../index.html"><i class="fas fa-info-circle"></i> 1. About</a>
+                    </div>
+                    <div class="nested-nav" id="about-nav">
+                        <a href="../page/main001.html"><i class="fas fa-history"></i> 1.1 History</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="installation-toggle">
+                        <a href="../page/main002.html"><i class="fas fa-download"></i> 2. Installation</a>
+                    </div>
+                    <div class="nested-nav" id="installation-nav">
+                        <div class="nav-toggle" id="live-installer-toggle">
+                            <a href="../page/main003.html"><i class="fas fa-compact-disc"></i> 2.1 Live Installer</a>
+                        </div>
+                        <div class="nested-nav" id="live-installer-nav">
+                            <a href="../page/main004.html"><i class="fas fa-hdd"></i> 2.1.1 Prepare Installation Media</a>
+                            <a href="../page/main005.html"><i class="fas fa-hdd"></i> 2.1.2 Partition Notes</a>
+                            <a href="../page/main006.html"><i class="fas fa-book"></i> 2.1.3 Installation Guide</a>
+                        </div>
+                        <div class="nav-toggle" id="advanced-installation-toggle">
+                            <a href="#"><i class="fas fa-cogs"></i> 2.2 Advanced Installation Guide</a>
+                        </div>
+                        <div class="nested-nav" id="advanced-installation-nav">
+                            <a href="../page/main008.html"><i class="fas fa-terminal"></i> 2.2.1 Installation via chroot (x86/x86_64/aarch64)</a>
+                            <a href="../page/main038.html"><i class="fas fa-hdd"></i> 2.2.2 Full Disk Encryption</a>
+                            <a href="../page/main039.html"><i class="fas fa-terminal"></i> 2.2.3 Root on ZFS</a>
+                            <div class="nav-toggle" id="arm-devices-toggle">
+                                <a href="../page/main009.html"><i class="fas fa-microchip"></i> 2.2.4 ARM Devices - Coming Soon</a>
+                            </div>
+                            <div class="nested-nav" id="arm-devices-nav">
+                                <a href="../page/main010.html"><i class="fab fa-apple"></i> 2.2.4.1 Apple Silicon - Coming Soon</a>
+                                <a href="../page/main011.html"><i class="fas fa-laptop"></i> 2.2.4.2 Lenovo Thinkpad X13s - Coming Soon</a>
+                                <a href="../page/main012.html"><i class="fas fa-microchip"></i> 2.2.4.3 Raspberry Pi - Coming Soon</a>
+                            </div>
+                        </div>
+                        </div>
+                        <a href="../page/main013.html"><i class="fas fa-cube"></i> 2.3 Musl - Coming Soon</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="configuration-toggle">
+                        <a href="../page/main014.html"><i class="fas fa-sliders-h"></i> 3. Configuration</a>
+                    </div>
+                    <div class="nested-nav" id="configuration-nav">
+                        <a href="../page/main015.html"><i class="fas fa-microchip"></i> 3.1 Firmware</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main049.html"><i class="fa-solid fa-wifi"></i> 3.1.1 Locale & Translations</a>
+                        </div>
+                        <a href="../page/main016.html"><i class="fas fa-server"></i> 3.2 Kernel</a>
+                        <a href="../page/main017.html"><i class="fas fa-clock"></i> 3.3 Date and Time</a>
+                        <a href="../page/main018.html"><i class="fa-solid fa-user"></i> 3.4 Users & Group</a>
+                        <a href="../page/main041.html"><i class="fa-solid fa-battery-full"></i> 3.5 Power Management</a>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main042.html"><i class="fa-solid fa-network-wired"></i> 3.6 Network</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main043.html"><i class="fa-solid fa-wifi"></i> 3.6.1 wpa_supplicant</a>
+                            <a href="../page/main044.html"><i class="fa-solid fa-wifi"></i> 3.6.2 NetworkManager</a>
+                            <a href="../page/main045.html"><i class="fa-solid fa-wifi"></i> 3.6.3 IWD</a>
+                            <a href="../page/main046.html"><i class="fa-solid fa-wifi"></i> 3.6.4 ConnMan</a>
+                            <a href="../page/main047.html"><i class="fa-solid fa-wifi"></i> 3.6.5 NetworkManager</a>
+                            <a href="../page/main048.html"><i class="fas fa-exchange-alt"></i> 3.6.6 Firewalls</a>
+                        </div>
+                        <div class="nav-toggle" id="x11-toggle">
+                            <a href="../page/main019.html"><i class="fas fa-desktop"></i> 3.7 X11</a>
+                        </div>
+                        <div class="nested-nav" id="x11-nav">
+                            <a href="../page/main020.html"><i class="fas fa-window-maximize"></i> 3.7.1 XFCE4</a>
+                            <a href="../page/main021.html"><i class="fas fa-th"></i> 3.7.2 BSPWM</a>
+                        </div>
+                        <div class="nav-toggle" id="wayland-toggle">
+                            <a href="../page/main022.html"><i class="fas fa-desktop"></i> 3.8 Wayland - Coming Soon</a>
+                        </div>
+                        <div class="nested-nav" id="wayland-nav">
+                            <a href="../page/main023.html"><i class="fas fa-desktop"></i> 3.8.1 KDE - Coming Soon</a>
+                            <a href="../page/main024.html"><i class="fas fa-water"></i> 3.8.2 River - Coming Soon</a>
+                        </div>
+                        <div class="nav-toggle" id="runit-toggle">
+                            <a href="../page/main025.html"><i class="fas fa-play-circle"></i> 3.9 Runit</a>
+                        </div>
+                        <div class="nested-nav" id="runit-nav">
+                            <a href="../page/main026.html"><i class="fas fa-book"></i> 3.9.1 How To Use Runit</a>
+                            <a href="../page/main027.html"><i class="fas fa-tools"></i> 3.9.2 How To Build Service</a>
+                            <a href="../page/main028.html"><i class="fas fa-wrench"></i> 3.9.3 Troubleshooting</a>
+                        </div>
+                        <a href="../page/main029.html"><i class="fas fa-cogs"></i> 3.10 SystemD - Coming Soon</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-toggle" id="xbps-toggle">
+                        <a href="../page/main030.html"><i class="fas fa-box"></i> 4. XBPS Package Manager</a>
+                    </div>
+                    <div class="nested-nav" id="xbps-nav">
+                        <a href="../page/main031.html"><i class="fas fa-cogs"></i> 4.1 Advanced Usage</a>
+                        <div class="nav-toggle" id="mirrors-toggle">
+                            <a href="../page/main032.html"><i class="fas fa-clone"></i> 4.2 Repositories</a>
+                        </div>
+                        <div class="nested-nav" id="mirrors-nav">
+                            <a href="../page/main040.html"><i class="fas fa-exchange-alt"></i> 4.2.1 Mirrors</a>
+                            <a href="../page/main033.html"><i class="fas fa-exchange-alt"></i> 4.2.2 Changing Mirrors</a>
+                            <a href="../page/main034.html"><i class="fas fa-user-secret"></i> 4.2.3 Using Tor Mirror</a>
+                        </div>
+                     <div>
+                         <a href="../page/main035.html"><i class="fas fa-wrench"></i> 4.3 Troubleshooting XBPS</a>
+                     </div>
+                     <div class="nested-nav">
+                        <a href="../page/main036.html"><i class="fas fa-cogs"></i> 4.3.1 Common Issues</a>
+                        <a href="../page/main037.html"><i class="fas fa-cube"></i> 4.3.2 Static XBPS</a>
+                     </div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="container">
+        <section id="about" class="content-section">
+            <h1>Advanced Installation Guides</h1>
+            <p>Bagian ini berisi panduan untuk kasus penggunaan yang lebih spesifik atau kompleks. </p>
+
+            <h3>Daftar Isi</h3>
+            <ul style="list-style-type: disc;">
+                <li><a href="../page/main008.html">Menginstall T4n OS Melalui chroot(x86/x86_64)</a></li>
+                <li><a href="../page/main038.html">Menginstall T4n OS Dengan Full Disk Enctyption</a></li>
+                <li><a href="../page/main039.html">Menginstall T4n OS pada ZFS Root</a></li>
+                <li><a href="../page/main009.html">ARM Devices</a></li>
+            </ul>
+            </div>
+
+            <i class="fa-solid fa-chevron-left"></i><a href="../page/main006.html"> Previous Page |</a>
+            <a href="../page/main008.html">| Next Page </a><i class="fa-solid fa-chevron-right"></i>
+
+        </section>
+    <script src="../assets/main.js"></script>
+</body>
+</html>
