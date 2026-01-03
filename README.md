@@ -1,7 +1,6 @@
 # T4n OS
 
 **T4n OS** adalah distro Linux berbasis **Void Linux**.  
-Awalnya ditujukan untuk **server**, tapi **bisa digunakan sebagai OS general-purpose** tergantung kebutuhan dan kemampuan user.
 
 Ini **eksperimen bocah Atjeh** sekaligus upaya **memperkenalkan Void Linux** ke ranah server dan desktop power-user.
 
@@ -62,7 +61,7 @@ Walaupun berangkat dari server, **T4n OS dapat digunakan untuk kebutuhan umum**,
   - Inkscape
 - Stabilitas tergantung setup masing-masing
 
-### 🎓 Education
+### 🎓 Education (Coming Soon)
 - Cocok untuk:
   - Belajar Linux
   - Belajar init system
@@ -111,7 +110,6 @@ Fungsi:
 Filosofi:
 - Simpel
 - Cepat
-- Tidak banyak omong
 
 ## ⚙️ Kustomisasi Runit
 
@@ -122,15 +120,9 @@ Filosofi:
 
 ## 🧪 Status Proyek
 
+- 🧪 Experimental
 - ❌ Bukan distro pemula
 - ❌ Bukan plug-and-play
-
-✔ Cocok untuk:
-- Power-user
-- Hacker legal
-- Sysadmin
-- Developer
-- User yang mau belajar Linux serius
 
 ## 🧠 Filosofi
 
